@@ -1,0 +1,66 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>MUU Section 1 — 1920×960 HTML experiment</title>
+<style>
+@font-face{font-family:Butler;src:url("../../wp-content/themes/muu-hotel/assets/fonts/Butler/Butler-Medium.woff2") format("woff2");font-weight:500;font-style:normal;font-display:swap}
+@font-face{font-family:HK Grotesk;src:url("../../wp-content/themes/muu-hotel/assets/fonts/HKGrotesk/HKGrotesk-SemiBold.woff2") format("woff2");font-weight:600;font-style:normal;font-display:swap}
+*{box-sizing:border-box}
+html,body{margin:0;background:#111;font-family:"HK Grotesk",Arial,sans-serif}
+body{min-width:1920px}
+.canvas{position:relative;width:1920px;height:960px;overflow:hidden;background:#000;color:#fff}
+.hero-media{position:absolute;inset:0;background:#000;overflow:hidden}
+.hero-media img{position:absolute;left:1px;top:-50px;width:1920px;height:1080px;object-fit:cover;opacity:.5;max-width:none}
+.left-rail{position:absolute;z-index:3;left:1px;top:0;width:74px;height:960px;background:rgba(0,0,0,.5)}
+.burger{position:absolute;left:17px;top:27.7px;width:42px;height:26.3px;border:0;padding:0;background:none;color:#fff;cursor:pointer}
+.burger span{position:absolute;left:0;width:42px;height:2px;background:#fff}
+.burger span:nth-child(1){top:0}.burger span:nth-child(2){top:12px}.burger span:nth-child(3){top:24px}
+.wordmark{position:absolute;z-index:4;left:92px;top:18px;font-family:Butler,Georgia,serif;font-size:45px;font-weight:500;line-height:1;text-decoration:none;color:#fff;letter-spacing:-1px}
+.top-line{position:absolute;z-index:3;left:0;top:83px;width:1920px;height:1px;background:rgba(255,255,255,.4)}
+.utility{position:absolute;z-index:4;top:0;right:0;height:83px;display:flex;align-items:stretch}
+.utility a{display:flex;align-items:center;justify-content:center;height:83px;color:#fff;text-decoration:none;text-transform:uppercase;font-size:16px;font-weight:600;letter-spacing:1.6px;white-space:nowrap}
+.utility .offers{width:159px}.utility .shop{width:135px}.utility .availability{width:340px;border-left:1px solid rgba(255,255,255,.4);font-weight:700}
+.vertical-label{position:absolute;z-index:4;left:-58px;top:451px;width:190px;text-align:center;transform:rotate(-90deg);transform-origin:center;color:#fff;font-size:20px;font-weight:600;letter-spacing:2px;white-space:nowrap}
+.play{position:absolute;z-index:4;left:887px;top:445px;width:144px;height:144px;border:1px solid rgba(255,255,255,.8);border-radius:50%;background:transparent;padding:0;cursor:pointer}
+.play:before{content:"";position:absolute;left:58px;top:43px;width:0;height:0;border-top:29px solid transparent;border-bottom:29px solid transparent;border-left:42px solid rgba(255,255,255,.85)}
+.social{position:absolute;z-index:4;left:24px;bottom:30px;width:26px;display:flex;flex-direction:column;align-items:center;gap:11px}
+.social a{display:flex;width:25px;height:25px;align-items:center;justify-content:center;color:#fff;text-decoration:none;font:600 13px/1 Arial,sans-serif}
+.yt{border:2px solid #fff;border-radius:6px;font-size:10px!important}.ig{border:2px solid #fff;border-radius:6px}.tt{font-size:17px!important}
+</style>
+</head>
+<body>
+<section class="canvas" aria-label="MUU Hotel hero design experiment">
+  <div class="hero-media" aria-hidden="true">
+    <img src="https://www.figma.com/api/mcp/asset/8109cbf6-7c8b-4560-9b89-3cefd353875b.png" alt="">
+  </div>
+
+  <aside class="left-rail" aria-label="Hero utility rail"></aside>
+
+  <button class="burger" type="button" aria-label="Open menu">
+    <span></span><span></span><span></span>
+  </button>
+
+  <a class="wordmark" href="#" aria-label="MUU Hotel home">muu</a>
+
+  <nav class="utility" aria-label="Utility navigation">
+    <a class="offers" href="#">Offers</a>
+    <a class="shop" href="#">Shop</a>
+    <a class="availability" href="#">Check Availability</a>
+  </nav>
+
+  <div class="top-line" aria-hidden="true"></div>
+
+  <div class="vertical-label">LOREM IPSUM DO</div>
+
+  <button class="play" type="button" aria-label="Play video"></button>
+
+  <div class="social" aria-label="Social links">
+    <a class="yt" href="#" aria-label="YouTube">▶</a>
+    <a class="tt" href="#" aria-label="TikTok">♪</a>
+    <a class="ig" href="#" aria-label="Instagram">◎</a>
+  </div>
+</section>
+</body>
+</html>
