@@ -2,7 +2,8 @@
 /**
  * Front page template.
  *
- * Main page content remains editable through WordPress / Elementor.
+ * Page layout and content are owned by the WordPress editor / Elementor.
+ * The theme only provides the global site foundation.
  *
  * @package MuuHotel
  */
@@ -10,18 +11,12 @@
 get_header();
 ?>
 <main id="main" class="site-main site-main--home">
-    <?php get_template_part( 'template-parts/home/hero' ); ?>
-    <?php get_template_part( 'template-parts/home/discovery' ); ?>
-    <?php get_template_part( 'template-parts/home/destination' ); ?>
-
-    <div class="home-content" id="home-content">
-        <?php
-        while ( have_posts() ) {
-            the_post();
-            the_content();
-        }
-        ?>
-    </div>
+    <?php
+    while ( have_posts() ) {
+        the_post();
+        the_content();
+    }
+    ?>
 </main>
 <?php
 get_footer();
