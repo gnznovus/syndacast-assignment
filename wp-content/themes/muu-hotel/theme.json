@@ -1,0 +1,99 @@
+{
+  "$schema": "https://schemas.wp.org/trunk/theme.json",
+  "version": 3,
+  "settings": {
+    "appearanceTools": true,
+    "layout": {
+      "contentSize": "1200px",
+      "wideSize": "1920px"
+    },
+    "color": {
+      "defaultPalette": false,
+      "palette": [
+        { "slug": "muu-black", "name": "MUU Black", "color": "#000000" },
+        { "slug": "muu-white", "name": "MUU White", "color": "#ffffff" },
+        { "slug": "muu-orange", "name": "MUU Orange", "color": "#fe5000" },
+        { "slug": "muu-gray", "name": "MUU Gray", "color": "#e6e6e6" }
+      ]
+    },
+    "typography": {
+      "fluid": true,
+      "fontFamilies": [
+        {
+          "slug": "butler",
+          "name": "Butler",
+          "fontFamily": "Butler, Georgia, serif",
+          "fontFace": [
+            {
+              "fontFamily": "Butler",
+              "fontStyle": "normal",
+              "fontWeight": "400",
+              "src": ["file:./assets/fonts/Butler/Butler-Regular.woff2"]
+            },
+            {
+              "fontFamily": "Butler",
+              "fontStyle": "normal",
+              "fontWeight": "500",
+              "src": ["file:./assets/fonts/Butler/Butler-Medium.woff2"]
+            },
+            {
+              "fontFamily": "Butler",
+              "fontStyle": "normal",
+              "fontWeight": "900",
+              "src": ["file:./assets/fonts/Butler/Butler-Black.woff2"]
+            }
+          ]
+        },
+        {
+          "slug": "hk-grotesk",
+          "name": "HK Grotesk",
+          "fontFamily": "'HK Grotesk', Arial, sans-serif",
+          "fontFace": [
+            {
+              "fontFamily": "HK Grotesk",
+              "fontStyle": "normal",
+              "fontWeight": "400",
+              "src": ["file:./assets/fonts/HKGrotesk/HKGrotesk-Regular.woff2"]
+            },
+            {
+              "fontFamily": "HK Grotesk",
+              "fontStyle": "normal",
+              "fontWeight": "600",
+              "src": ["file:./assets/fonts/HKGrotesk/HKGrotesk-SemiBold.woff2"]
+            },
+            {
+              "fontFamily": "HK Grotesk",
+              "fontStyle": "normal",
+              "fontWeight": "700",
+              "src": ["file:./assets/fonts/HKGrotesk/HKGrotesk-Bold.woff2"]
+            }
+          ]
+        }
+      ]
+    },
+    "spacing": {
+      "units": ["px", "rem", "em", "%", "vw", "vh"]
+    }
+  },
+  "styles": {
+    "color": {
+      "background": "var:preset|color|muu-white",
+      "text": "#111111"
+    },
+    "typography": {
+      "fontFamily": "var:preset|font-family|hk-grotesk"
+    },
+    "elements": {
+      "heading": {
+        "typography": {
+          "fontFamily": "var:preset|font-family|butler",
+          "fontWeight": "400"
+        }
+      }
+    }
+  },
+  "templateParts": [
+    { "name": "header", "title": "Header", "area": "header" },
+    { "name": "footer", "title": "Footer", "area": "footer" }
+  ]
+}
