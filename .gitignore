@@ -1,0 +1,24 @@
+# Environment
+.env
+
+# OS / editor
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/
+
+# WordPress runtime / uploads
+wp-content/uploads/
+wp-content/cache/
+wp-content/upgrade/
+wp-content/backup*/
+
+# Installed plugins are environment dependencies, not source
+wp-content/plugins/
+
+# Logs
+*.log
+
+# Local exports / databases
+*.sql
+*.sql.gz
