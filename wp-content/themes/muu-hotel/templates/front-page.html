@@ -1,4 +1,29 @@
-<!-- wp:template-part {"slug":"header","tagName":"header"} /-->
+<!-- wp:group {"align":"full","className":"muu-hero-shell","layout":{"type":"default"}} -->
+<div class="wp-block-group alignfull muu-hero-shell">
+	<!-- wp:template-part {"slug":"header","tagName":"header"} /-->
+
+	<!-- wp:group {"className":"muu-hero-rail","layout":{"type":"flex","orientation":"vertical","justifyContent":"space-between","verticalAlignment":"center"}} -->
+	<div class="wp-block-group muu-hero-rail">
+		<!-- wp:navigation {"overlayMenu":"always","icon":"menu","className":"muu-hero-rail__menu","layout":{"type":"flex","justifyContent":"center"}} -->
+			<!-- wp:navigation-link {"label":"Home","url":"/","kind":"custom"} /-->
+			<!-- wp:navigation-link {"label":"Contact Us","url":"/contact-us/","kind":"custom"} /-->
+		<!-- /wp:navigation -->
+
+		<!-- wp:paragraph {"className":"muu-hero-rail__label","style":{"typography":{"fontFamily":"var:preset|font-family|hk-grotesk","fontSize":"20px","fontWeight":"600","letterSpacing":"2px"}}} -->
+		<p class="muu-hero-rail__label" style="font-family:var(--wp--preset--font-family--hk-grotesk);font-size:20px;font-weight:600;letter-spacing:2px">LOREM IPSUM DO</p>
+		<!-- /wp:paragraph -->
+
+		<!-- wp:social-links {"iconColor":"muu-white","iconColorValue":"#ffffff","openInNewTab":true,"size":"has-small-icon-size","className":"is-style-logos-only muu-hero-rail__social","layout":{"type":"flex","orientation":"vertical"}} -->
+		<ul class="wp-block-social-links has-small-icon-size has-icon-color is-style-logos-only muu-hero-rail__social">
+			<!-- wp:social-link {"url":"#","service":"youtube"} /-->
+			<!-- wp:social-link {"url":"#","service":"tiktok"} /-->
+			<!-- wp:social-link {"url":"#","service":"instagram"} /-->
+		</ul>
+		<!-- /wp:social-links -->
+	</div>
+	<!-- /wp:group -->
+</div>
+<!-- /wp:group -->
 
 <!-- wp:group {"tagName":"main","layout":{"type":"default"}} -->
 <main class="wp-block-group">
