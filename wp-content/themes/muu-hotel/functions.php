@@ -9,6 +9,8 @@ if ( ! defined( 'ABSPATH' ) ) {
     exit;
 }
 
+require_once get_theme_file_path( 'inc/home-content.php' );
+
 function muu_hotel_setup(): void {
     add_theme_support( 'title-tag' );
     add_theme_support( 'post-thumbnails' );
