@@ -8,7 +8,11 @@
       "wideSize": "1920px"
     },
     "color": {
+      "custom": true,
+      "customDuotone": false,
+      "customGradient": false,
       "defaultPalette": false,
+      "defaultGradients": false,
       "palette": [
         { "slug": "muu-black", "name": "MUU Black", "color": "#000000" },
         { "slug": "muu-white", "name": "MUU White", "color": "#ffffff" },
@@ -17,7 +21,22 @@
       ]
     },
     "typography": {
+      "customFontSize": true,
       "fluid": true,
+      "fontStyle": true,
+      "fontWeight": true,
+      "letterSpacing": true,
+      "lineHeight": true,
+      "textDecoration": true,
+      "textTransform": true,
+      "fontSizes": [
+        { "slug": "muu-xs", "name": "MUU XS", "size": "12px" },
+        { "slug": "muu-nav", "name": "MUU Navigation", "size": "16px" },
+        { "slug": "muu-body", "name": "MUU Body", "size": "18px" },
+        { "slug": "muu-label", "name": "MUU Label", "size": "30px" },
+        { "slug": "muu-heading", "name": "MUU Heading", "size": "50px" },
+        { "slug": "muu-display", "name": "MUU Display", "size": "188px" }
+      ],
       "fontFamilies": [
         {
           "slug": "butler",
@@ -72,7 +91,24 @@
       ]
     },
     "spacing": {
-      "units": ["px", "rem", "em", "%", "vw", "vh"]
+      "customSpacingSize": true,
+      "units": ["px", "rem", "em", "%", "vw", "vh"],
+      "spacingSizes": [
+        { "slug": "muu-xs", "name": "MUU XS", "size": "8px" },
+        { "slug": "muu-sm", "name": "MUU Small", "size": "16px" },
+        { "slug": "muu-md", "name": "MUU Medium", "size": "32px" },
+        { "slug": "muu-lg", "name": "MUU Large", "size": "64px" },
+        { "slug": "muu-xl", "name": "MUU XL", "size": "96px" }
+      ]
+    },
+    "border": {
+      "color": true,
+      "radius": true,
+      "style": true,
+      "width": true
+    },
+    "dimensions": {
+      "minHeight": true
     }
   },
   "styles": {
@@ -81,7 +117,8 @@
       "text": "#111111"
     },
     "typography": {
-      "fontFamily": "var:preset|font-family|hk-grotesk"
+      "fontFamily": "var:preset|font-family|hk-grotesk",
+      "fontSize": "var:preset|font-size|muu-body"
     },
     "elements": {
       "heading": {
