@@ -3,7 +3,6 @@
  * Title: MUU Navbar
  * Slug: muu-hotel/muu-navbar
  * Categories: header
- * Block Types: core/template-part/header
  * Inserter: yes
  */
 ?>
