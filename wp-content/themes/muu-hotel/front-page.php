@@ -11,6 +11,8 @@ get_header();
 ?>
 <main id="main" class="site-main site-main--home">
     <?php get_template_part( 'template-parts/home/hero' ); ?>
+    <?php get_template_part( 'template-parts/home/discovery' ); ?>
+    <?php get_template_part( 'template-parts/home/destination' ); ?>
 
     <div class="home-content" id="home-content">
         <?php
