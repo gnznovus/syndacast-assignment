@@ -12,9 +12,9 @@ html,body{margin:0;background:#111;font-family:"HK Grotesk",Arial,sans-serif}
 body{min-width:1920px}
 .canvas{position:relative;width:1920px;height:960px;overflow:hidden;background:#000;color:#fff}
 .hero-media{position:absolute;inset:0;background:#000;overflow:hidden}
-.hero-media img{position:absolute;left:1px;top:-50px;width:1920px;height:1080px;object-fit:cover;opacity:.5;max-width:none}
-.left-rail{position:absolute;z-index:3;left:1px;top:0;width:74px;height:960px;background:rgba(0,0,0,.5)}
-.burger{position:absolute;left:17px;top:27.7px;width:42px;height:26.3px;border:0;padding:0;background:none;color:#fff;cursor:pointer}
+.hero-media img{position:absolute;inset:0;width:1920px;height:960px;object-fit:cover;opacity:.5;max-width:none}
+.left-rail{position:absolute;z-index:3;left:0;top:0;width:74px;height:960px;background:rgba(0,0,0,.5)}
+.burger{position:absolute;z-index:4;left:17px;top:27.7px;width:42px;height:26.3px;border:0;padding:0;background:none;color:#fff;cursor:pointer}
 .burger span{position:absolute;left:0;width:42px;height:2px;background:#fff}
 .burger span:nth-child(1){top:0}.burger span:nth-child(2){top:12px}.burger span:nth-child(3){top:24px}
 .wordmark{position:absolute;z-index:4;left:92px;top:18px;font-family:Butler,Georgia,serif;font-size:45px;font-weight:500;line-height:1;text-decoration:none;color:#fff;letter-spacing:-1px}
@@ -33,7 +33,7 @@ body{min-width:1920px}
 <body>
 <section class="canvas" aria-label="MUU Hotel hero design experiment">
   <div class="hero-media" aria-hidden="true">
-    <img src="https://www.figma.com/api/mcp/asset/8109cbf6-7c8b-4560-9b89-3cefd353875b.png" alt="">
+    <img src="./hero.png" alt="">
   </div>
 
   <aside class="left-rail" aria-label="Hero utility rail"></aside>
