@@ -10,12 +10,16 @@
 get_header();
 ?>
 <main id="main" class="site-main site-main--home">
-    <?php
-    while ( have_posts() ) {
-        the_post();
-        the_content();
-    }
-    ?>
+    <?php get_template_part( 'template-parts/home/hero' ); ?>
+
+    <div class="home-content" id="home-content">
+        <?php
+        while ( have_posts() ) {
+            the_post();
+            the_content();
+        }
+        ?>
+    </div>
 </main>
 <?php
 get_footer();

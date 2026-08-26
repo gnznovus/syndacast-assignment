@@ -1,3 +1,13 @@
 'use strict';
 
-// Theme interactions will be added as the Figma states are implemented.
+const menuToggle = document.querySelector('.site-header__menu-toggle');
+const menuPanel = document.getElementById('primary-menu-panel');
+
+if (menuToggle && menuPanel) {
+    menuToggle.addEventListener('click', () => {
+        const isOpen = menuToggle.getAttribute('aria-expanded') === 'true';
+
+        menuToggle.setAttribute('aria-expanded', String(!isOpen));
+        menuPanel.hidden = isOpen;
+    });
+}
