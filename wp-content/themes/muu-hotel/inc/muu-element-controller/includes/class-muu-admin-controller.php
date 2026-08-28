@@ -278,8 +278,8 @@ final class MUU_Admin_Controller {
 
             <div class="muu-subtab-content">
                 <?php
-                if ( 'footer' === $section && class_exists( 'MUU_Footer_Controller' ) ) {
-                    MUU_Footer_Controller::instance()->render_settings_panel();
+                if ( 'footer' === $section ) {
+                    $this->render_settings_panel();
                 } else {
                     $this->render_navigation_settings_panel();
                 }
