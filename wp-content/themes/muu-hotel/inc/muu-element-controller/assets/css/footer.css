@@ -295,16 +295,22 @@
     .muu-footer--tablet-2 .muu-footer__nav {
         order: 2;
         width: max-content;
-        max-width: calc(100% - 1.5rem);
+        max-width: calc(100% - 3rem);
+        align-self: center;
         margin-right: 0;
+        margin-inline: auto;
+        text-align: left;
     }
 
     .muu-footer__contacts,
     .muu-footer--tablet-1 .muu-footer__contacts,
     .muu-footer--tablet-2 .muu-footer__contacts {
         order: 3;
-        width: auto;
+        width: min(calc(100% - 3rem), 22rem);
+        align-self: center;
         margin-left: 0;
+        margin-inline: auto;
+        text-align: left;
     }
 
     .muu-footer__nav,
