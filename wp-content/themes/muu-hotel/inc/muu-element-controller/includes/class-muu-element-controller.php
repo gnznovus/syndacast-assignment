@@ -292,14 +292,73 @@ final class MUU_Element_Controller {
 
             <div class="muu-admin-card">
                 <h3><?php esc_html_e( 'Registered shortcodes', 'muu-element-controller' ); ?></h3>
-                <div class="muu-shortcode-list">
-                    <?php foreach ( $shortcodes as $shortcode ) : ?>
-                        <code>[<?php echo esc_html( $shortcode ); ?>]</code>
-                    <?php endforeach; ?>
-                </div>
-                <div class="muu-quick-actions">
-                    <a class="button button-primary" href="<?php echo esc_url( admin_url( 'admin.php?page=muu-theme-controller&tab=shortcodes&section=navigation' ) ); ?>" data-muu-tab="shortcodes" data-muu-section="navigation"><?php esc_html_e( 'Edit Navigation', 'muu-element-controller' ); ?></a>
-                    <a class="button" href="<?php echo esc_url( admin_url( 'admin.php?page=muu-theme-controller&tab=shortcodes&section=footer' ) ); ?>" data-muu-tab="shortcodes" data-muu-section="footer"><?php esc_html_e( 'Edit Footer', 'muu-element-controller' ); ?></a>
+                <p class="description"><?php esc_html_e( 'Expand a shortcode to see supported arguments and usage examples.', 'muu-element-controller' ); ?></p>
+
+                <div class="muu-shortcode-docs">
+                    <details>
+                        <summary><code>[muu_nav_lefttab]</code><span><?php esc_html_e( 'Navigation + expandable left panel', 'muu-element-controller' ); ?></span></summary>
+                        <div class="muu-shortcode-docs__body">
+                            <p><strong><?php esc_html_e( 'Example', 'muu-element-controller' ); ?></strong></p>
+                            <code>[muu_nav_lefttab left-tab="false" logo-color="#000" nav-color="#000" mobile-logo-color="#fff" mobile-nav-color="#fff"]</code>
+                            <table class="widefat striped muu-shortcode-args"><tbody>
+                                <tr><td><code>class</code></td><td><?php esc_html_e( 'Extra CSS class on the component root.', 'muu-element-controller' ); ?></td></tr>
+                                <tr><td><code>target</code></td><td><?php esc_html_e( 'Override the configured Elementor host selector.', 'muu-element-controller' ); ?></td></tr>
+                                <tr><td><code>left-tab</code></td><td><?php esc_html_e( 'Show or hide the expandable left rail. Default: true.', 'muu-element-controller' ); ?></td></tr>
+                                <tr><td><code>logo-color</code></td><td><?php esc_html_e( 'Logo color override.', 'muu-element-controller' ); ?></td></tr>
+                                <tr><td><code>nav-color</code></td><td><?php esc_html_e( 'Utility navigation color override.', 'muu-element-controller' ); ?></td></tr>
+                                <tr><td><code>divider-color</code></td><td><?php esc_html_e( 'Header divider color override.', 'muu-element-controller' ); ?></td></tr>
+                                <tr><td><code>mobile-logo-color</code></td><td><?php esc_html_e( 'Mobile logo color override.', 'muu-element-controller' ); ?></td></tr>
+                                <tr><td><code>mobile-nav-color</code></td><td><?php esc_html_e( 'Mobile utility navigation color override.', 'muu-element-controller' ); ?></td></tr>
+                                <tr><td><code>mobile-divider-color</code></td><td><?php esc_html_e( 'Mobile divider color override.', 'muu-element-controller' ); ?></td></tr>
+                            </tbody></table>
+                            <a class="button button-primary" href="<?php echo esc_url( admin_url( 'admin.php?page=muu-theme-controller&tab=shortcodes&section=navigation' ) ); ?>" data-muu-tab="shortcodes" data-muu-section="navigation"><?php esc_html_e( 'Edit Navigation', 'muu-element-controller' ); ?></a>
+                        </div>
+                    </details>
+
+                    <details>
+                        <summary><code>[muu_orange_shape]</code><span><?php esc_html_e( 'Decorative orange hero artwork', 'muu-element-controller' ); ?></span></summary>
+                        <div class="muu-shortcode-docs__body">
+                            <p><strong><?php esc_html_e( 'Example', 'muu-element-controller' ); ?></strong></p>
+                            <code>[muu_orange_shape left="20%" top="12%" width="28%" rotate="0" color="#fe5000" opacity="0.85"]</code>
+                            <table class="widefat striped muu-shortcode-args"><tbody>
+                                <tr><td><code>target</code></td><td><?php esc_html_e( 'Elementor host selector.', 'muu-element-controller' ); ?></td></tr>
+                                <tr><td><code>left</code></td><td><?php esc_html_e( 'Horizontal position. Default: 20%.', 'muu-element-controller' ); ?></td></tr>
+                                <tr><td><code>top</code></td><td><?php esc_html_e( 'Vertical position. Default: 12%.', 'muu-element-controller' ); ?></td></tr>
+                                <tr><td><code>width</code></td><td><?php esc_html_e( 'Artwork width. Default: 28%.', 'muu-element-controller' ); ?></td></tr>
+                                <tr><td><code>height</code></td><td><?php esc_html_e( 'Artwork height. Default: auto.', 'muu-element-controller' ); ?></td></tr>
+                                <tr><td><code>rotate</code></td><td><?php esc_html_e( 'Rotation in degrees.', 'muu-element-controller' ); ?></td></tr>
+                                <tr><td><code>flip_x</code></td><td><?php esc_html_e( 'Flip horizontally. Default: true.', 'muu-element-controller' ); ?></td></tr>
+                                <tr><td><code>flip_y</code></td><td><?php esc_html_e( 'Flip vertically. Default: false.', 'muu-element-controller' ); ?></td></tr>
+                                <tr><td><code>color</code></td><td><?php esc_html_e( 'Artwork color. Default: #fe5000.', 'muu-element-controller' ); ?></td></tr>
+                                <tr><td><code>opacity</code></td><td><?php esc_html_e( 'Opacity from 0 to 1. Default: 0.85.', 'muu-element-controller' ); ?></td></tr>
+                                <tr><td><code>class</code></td><td><?php esc_html_e( 'Extra CSS class.', 'muu-element-controller' ); ?></td></tr>
+                            </tbody></table>
+                        </div>
+                    </details>
+
+                    <details>
+                        <summary><code>[muu_contact_form]</code><span><?php esc_html_e( 'Styled Contact Form 7 wrapper', 'muu-element-controller' ); ?></span></summary>
+                        <div class="muu-shortcode-docs__body">
+                            <p><strong><?php esc_html_e( 'Example', 'muu-element-controller' ); ?></strong></p>
+                            <code>[muu_contact_form id="254"]</code>
+                            <table class="widefat striped muu-shortcode-args"><tbody>
+                                <tr><td><code>id</code></td><td><?php esc_html_e( 'Required Contact Form 7 form ID.', 'muu-element-controller' ); ?></td></tr>
+                                <tr><td><code>class</code></td><td><?php esc_html_e( 'Extra CSS class on the wrapper.', 'muu-element-controller' ); ?></td></tr>
+                            </tbody></table>
+                        </div>
+                    </details>
+
+                    <details>
+                        <summary><code>[muu_footer]</code><span><?php esc_html_e( 'Theme-owned footer component', 'muu-element-controller' ); ?></span></summary>
+                        <div class="muu-shortcode-docs__body">
+                            <p><strong><?php esc_html_e( 'Example', 'muu-element-controller' ); ?></strong></p>
+                            <code>[muu_footer]</code>
+                            <table class="widefat striped muu-shortcode-args"><tbody>
+                                <tr><td><code>class</code></td><td><?php esc_html_e( 'Optional extra CSS class on the footer root.', 'muu-element-controller' ); ?></td></tr>
+                            </tbody></table>
+                            <a class="button button-primary" href="<?php echo esc_url( admin_url( 'admin.php?page=muu-theme-controller&tab=shortcodes&section=footer' ) ); ?>" data-muu-tab="shortcodes" data-muu-section="footer"><?php esc_html_e( 'Edit Footer', 'muu-element-controller' ); ?></a>
+                        </div>
+                    </details>
                 </div>
             </div>
         </section>
