@@ -303,3 +303,32 @@
         width: 35%;
     }
 }
+
+.muu-shortcode-example {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-bottom: 14px;
+}
+
+.muu-shortcode-example > code {
+    display: block;
+    max-width: 100%;
+    padding: 8px 10px;
+    overflow-wrap: anywhere;
+}
+
+.muu-shortcode-example .button {
+    flex: 0 0 auto;
+}
+
+@media (max-width: 600px) {
+    .muu-shortcode-example {
+        align-items: stretch;
+        flex-direction: column;
+    }
+
+    .muu-shortcode-example .button {
+        align-self: flex-start;
+    }
+}
