@@ -511,9 +511,12 @@
     }
 
     /* Expanded tablet: socials and collapse control share one baseline. */
-    .muu-ec-nav-lefttab.is-menu-open .muu-ec-socials,
-    .muu-ec-nav-lefttab.is-menu-open .muu-ec-panel-close {
+    .muu-ec-nav-lefttab.is-menu-open .muu-ec-socials {
         bottom: clamp(1.75rem, 5cqh, 2.5rem);
+    }
+
+    .muu-ec-nav-lefttab.is-menu-open .muu-ec-panel-close {
+        bottom: clamp(1.25rem, 3.5cqh, 1.75rem);
     }
 
     .muu-ec-nav-lefttab.is-menu-open .muu-ec-socials {
