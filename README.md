@@ -24,9 +24,28 @@ cp .env.example .env
 docker compose up -d
 ```
 
-On the first run, MySQL imports the sanitized finished-site snapshot and the setup container installs the required plugins. Allow a short time for setup to finish, then open `http://localhost:8080` (or the port configured in `.env`).
+On the first run, MySQL imports the sanitized finished-site snapshot and the setup container installs the required plugins, activates the MUU theme, and updates the local site URL. Allow a short time for setup to finish.
 
-Reviewer dashboard access:
+To follow the setup process:
+
+```bash
+docker compose logs -f setup
+```
+
+Setup is complete once the `setup` container finishes successfully.
+
+### Reviewer URLs
+
+```text
+Frontend: http://localhost:8080/
+Admin:    http://localhost:8080/wp-admin/
+```
+
+If `WORDPRESS_PORT` is changed in `.env`, use that port instead of `8080`.
+
+The Contact Us page is available from the site's navigation after setup.
+
+### Reviewer Dashboard Access
 
 ```text
 URL:      http://localhost:8080/wp-admin/
@@ -51,13 +70,27 @@ The custom theme is mounted from:
 wp-content/themes/muu-hotel
 ```
 
-Activate **MUU Hotel Assessment** from WordPress Admin.
+The Docker setup service activates **MUU Hotel Assessment** automatically.
 
 ## Development Approach
 
 The project uses a lightweight custom WordPress theme for the global visual system, shared layout, responsive behavior, and WordPress integration. Elementor Free is used for editable main page content, avoiding Elementor Pro-only functionality. Theme-owned MUU Controller shortcodes provide the custom navigation, expandable left tab, decorative shape, and Contact Form 7 presentation that Elementor Free does not include.
 
 This split keeps the implementation maintainable and design-focused while ensuring the assessment's main content can be managed through WordPress Admin.
+
+## Contact Form Behavior
+
+Contact Form 7 handles form validation and submission processing, while Flamingo stores submitted messages in WordPress Admin for review.
+
+In the packaged local Docker environment, outgoing email/SMTP is intentionally not configured. Because of this, Contact Form 7 may display its red mail-delivery error after submission.
+
+**This is expected in the local review environment.**
+
+The submission itself is still processed and stored successfully in:
+
+**WordPress Admin → Flamingo → Inbound Messages**
+
+A production deployment would require a configured WordPress mail transport or SMTP provider for reliable outbound email notifications.
 
 ## SEO, Performance & Accessibility
 
@@ -87,7 +120,7 @@ Required for the implemented page-building and contact-form workflow:
 - Contact Form 7
 - Flamingo
 
-Contact Form 7 handles validation and delivery; Flamingo stores contact submissions.
+Contact Form 7 handles validation and submission processing. Flamingo stores submitted contact messages in WordPress Admin.
 
 ### Nice-to-have plugins
 
