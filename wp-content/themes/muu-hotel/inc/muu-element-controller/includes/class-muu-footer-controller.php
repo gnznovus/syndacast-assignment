@@ -166,8 +166,8 @@ JS
             <td>
                 <div class="muu-media-field">
                     <input id="muu-footer-<?php echo esc_attr( $key ); ?>" name="muu_footer_settings[<?php echo esc_attr( $key ); ?>]" type="hidden" value="<?php echo esc_attr( $attachment_id ); ?>">
-                    <div class="muu-media-preview" style="margin-bottom:10px;max-width:320px;">
-                        <?php if ( $preview ) : ?><img src="<?php echo esc_url( $preview ); ?>" alt="" style="display:block;max-width:100%;height:auto;"><?php endif; ?>
+                    <div class="muu-media-preview">
+                        <?php if ( $preview ) : ?><img src="<?php echo esc_url( $preview ); ?>" alt=""><?php endif; ?>
                     </div>
                     <button class="button muu-media-select" type="button" data-target="muu-footer-<?php echo esc_attr( $key ); ?>"><?php esc_html_e( 'Select / Upload Image', 'muu-element-controller' ); ?></button>
                     <button class="button muu-media-remove" type="button" data-target="muu-footer-<?php echo esc_attr( $key ); ?>"<?php echo $attachment_id ? '' : ' hidden'; ?>><?php esc_html_e( 'Remove', 'muu-element-controller' ); ?></button>
@@ -265,8 +265,8 @@ JS
             <?php endforeach; ?>
 
             <div class="muu-admin-note">
-                <code>[muu_footer tablet_columns="2"]</code>
-                <span><?php esc_html_e( 'Use tablet_columns="1" for a stacked tablet layout. Link fields accept #, anchors, relative paths, or full URLs.', 'muu-element-controller' ); ?></span>
+                <code>[muu_footer]</code>
+                <span><?php esc_html_e( 'Tablet layout uses the theme-owned pyramid composition. Link fields accept #, anchors, relative paths, or full URLs.', 'muu-element-controller' ); ?></span>
             </div>
 
             <?php submit_button( __( 'Save Footer Settings', 'muu-element-controller' ) ); ?>
@@ -291,12 +291,11 @@ JS
     public function render_footer( $atts = array() ): string {
         $options = self::options();
         $atts = shortcode_atts(
-            array( 'tablet_columns' => '2', 'class' => '' ),
+            array( 'class' => '' ),
             is_array( $atts ) ? $atts : array(),
             'muu_footer'
         );
 
-        $tablet_columns   = '1' === (string) $atts['tablet_columns'] ? '1' : '2';
         $background_url   = $options['background_image_id'] ? wp_get_attachment_image_url( absint( $options['background_image_id'] ), 'full' ) : '';
         $background_style = $background_url ? '--muu-footer-background:url(' . esc_url( $background_url ) . ');' : '';
         $slh              = $options['slh_image_id'] ? wp_get_attachment_image( absint( $options['slh_image_id'] ), 'medium', false, array( 'class' => 'muu-footer__slh', 'loading' => 'lazy' ) ) : '';
@@ -313,7 +312,7 @@ JS
 
         ob_start();
         ?>
-        <footer class="muu-footer muu-footer--tablet-<?php echo esc_attr( $tablet_columns ); ?> <?php echo esc_attr( $atts['class'] ); ?>" style="<?php echo esc_attr( $background_style ); ?>">
+        <footer class="muu-footer <?php echo esc_attr( $atts['class'] ); ?>" style="<?php echo esc_attr( $background_style ); ?>">
             <div class="muu-footer__inner">
                 <nav class="muu-footer__nav" aria-label="<?php esc_attr_e( 'Footer navigation', 'muu-element-controller' ); ?>">
                     <?php foreach ( $nav_items as $item ) : ?>
