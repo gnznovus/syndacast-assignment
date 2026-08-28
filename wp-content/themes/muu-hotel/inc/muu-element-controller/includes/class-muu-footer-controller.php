@@ -261,12 +261,12 @@ JS
             'muu_footer'
         );
 
-        $tablet_columns  = '1' === (string) $atts['tablet_columns'] ? '1' : '2';
-        $background_url  = $options['background_image_id'] ? wp_get_attachment_image_url( absint( $options['background_image_id'] ), 'full' ) : '';
+        $tablet_columns   = '1' === (string) $atts['tablet_columns'] ? '1' : '2';
+        $background_url   = $options['background_image_id'] ? wp_get_attachment_image_url( absint( $options['background_image_id'] ), 'full' ) : '';
         $background_style = $background_url ? '--muu-footer-background:url(' . esc_url( $background_url ) . ');' : '';
-        $slh = $options['slh_image_id'] ? wp_get_attachment_image( absint( $options['slh_image_id'] ), 'medium', false, array( 'class' => 'muu-footer__slh', 'loading' => 'lazy' ) ) : '';
+        $slh              = $options['slh_image_id'] ? wp_get_attachment_image( absint( $options['slh_image_id'] ), 'medium', false, array( 'class' => 'muu-footer__slh', 'loading' => 'lazy' ) ) : '';
 
-        wp_enqueue_style( 'muu-footer', MUU_EC_URL . 'assets/css/footer.css', array( 'muu-element-controller' ), (string) filemtime( MUU_EC_PATH . 'assets/css/footer.css' ) );
+        wp_enqueue_style( 'muu-footer', MUU_EC_URL . 'assets/css/footer.css', array(), (string) filemtime( MUU_EC_PATH . 'assets/css/footer.css' ) );
 
         $nav_items = array(
             array( $options['gallery_label'], $options['gallery_url'] ),
