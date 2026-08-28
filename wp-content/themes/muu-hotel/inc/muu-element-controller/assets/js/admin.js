@@ -69,8 +69,6 @@
         event.preventDefault();
         loadPanel(link);
     });
-})();
-
     document.addEventListener('click', function (event) {
         var button = event.target.closest('[data-muu-copy-shortcode]');
         if (!button) {
@@ -90,3 +88,4 @@
             }, 1200);
         });
     });
+})();
