@@ -572,8 +572,7 @@
 
     /* Collapsed left rail: keep its identity, just give its content room. */
     .muu-ec-side-label {
-        font-size: clamp(.625rem, 3cqw, .75rem);
-        letter-spacing: clamp(.75px, .35cqw, 1.25px);
+        display: none;
     }
 
     .muu-ec-socials {
