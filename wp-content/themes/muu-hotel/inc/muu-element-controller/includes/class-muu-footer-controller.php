@@ -168,7 +168,7 @@ JS
                         <?php if ( $preview ) : ?><img src="<?php echo esc_url( $preview ); ?>" alt="" style="display:block;max-width:100%;height:auto;"><?php endif; ?>
                     </div>
                     <button class="button muu-media-select" type="button" data-target="muu-footer-<?php echo esc_attr( $key ); ?>"><?php esc_html_e( 'Select / Upload Image', 'muu-element-controller' ); ?></button>
-                    <button class="button muu-media-remove" type="button" data-target="muu-footer-<?php echo esc_attr( $key ); ?>" <?php hidden( ! $attachment_id ); ?>><?php esc_html_e( 'Remove', 'muu-element-controller' ); ?></button>
+                    <button class="button muu-media-remove" type="button" data-target="muu-footer-<?php echo esc_attr( $key ); ?>"<?php echo $attachment_id ? '' : ' hidden'; ?>><?php esc_html_e( 'Remove', 'muu-element-controller' ); ?></button>
                 </div>
             </td>
         </tr>
