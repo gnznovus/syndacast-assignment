@@ -103,3 +103,22 @@ video {
     white-space: nowrap;
     border: 0;
 }
+
+/* Keep CSS-drawn social icons on the component text color instead of the
+   browser's default link color. */
+.muu-ec-socials a {
+    color: inherit;
+    text-decoration: none;
+}
+
+/* Keep the social controls inside short/narrow hero layouts. */
+@container (max-width: 700px) {
+    .muu-ec-socials {
+        bottom: clamp(1rem, 3cqh, 2rem);
+        transform: translateX(-50%);
+    }
+
+    .muu-ec-nav-lefttab.is-menu-open .muu-ec-socials {
+        transform: none;
+    }
+}
