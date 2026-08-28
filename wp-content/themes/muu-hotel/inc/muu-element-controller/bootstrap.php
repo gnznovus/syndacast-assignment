@@ -22,5 +22,20 @@ if ( ! defined( 'MUU_EC_URL' ) ) {
 if ( ! class_exists( 'MUU_Element_Controller' ) ) {
     require_once MUU_EC_PATH . 'includes/class-muu-element-controller.php';
 }
+if ( ! class_exists( 'MUU_Footer_Controller' ) ) {
+    require_once MUU_EC_PATH . 'includes/class-muu-footer-controller.php';
+}
 
 MUU_Element_Controller::instance();
+MUU_Footer_Controller::instance();
+
+add_action(
+    'wp_enqueue_scripts',
+    static function (): void {
+        $footer_css = MUU_EC_PATH . 'assets/css/footer.css';
+        if ( file_exists( $footer_css ) ) {
+            wp_enqueue_style( 'muu-footer', MUU_EC_URL . 'assets/css/footer.css', array( 'muu-element-controller' ), (string) filemtime( $footer_css ) );
+        }
+    },
+    20
+);
