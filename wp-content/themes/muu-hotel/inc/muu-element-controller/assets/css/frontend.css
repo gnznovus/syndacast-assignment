@@ -509,7 +509,7 @@
 
     .muu-ec-booking {
         top: 54%;
-        left: clamp(6.5rem, 17cqw, 10.5rem);
+        left: clamp(5rem, 12cqw, 7rem);
         width: clamp(5.75rem, 12cqw, 7.5rem);
     }
 }
