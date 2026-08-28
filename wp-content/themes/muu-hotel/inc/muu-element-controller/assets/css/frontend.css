@@ -481,17 +481,47 @@
         --muu-ec-bottom-control-line: clamp(1.5rem, 4cqh, 2.25rem);
     }
 
+    .muu-ec-panel-content {
+        min-width: 0;
+    }
+
+    .muu-ec-side-label {
+        font-size: clamp(.5625rem, 1.2cqw, .72rem);
+        letter-spacing: .8px;
+    }
+
+    .muu-ec-socials {
+        bottom: clamp(1.75rem, 5cqh, 2.5rem);
+        gap: clamp(.35rem, .8cqh, .55rem);
+    }
+
+    .muu-ec-socials a {
+        width: clamp(.75rem, 1.05cqw, 1rem);
+    }
+
     .muu-ec-nav-lefttab.is-menu-open .muu-ec-side-label {
         left: clamp(2.75rem, 5cqw, 4rem);
-        font-size: clamp(.625rem, 1.5cqw, .8rem);
-        letter-spacing: 1px;
     }
 
     .muu-ec-nav-lefttab.is-menu-open .muu-ec-socials {
         left: clamp(2.75rem, 5cqw, 4rem);
-        bottom: clamp(1.25rem, 4cqh, 2rem);
-        gap: clamp(.5rem, 1.2cqw, .75rem);
+        bottom: clamp(1.75rem, 5cqh, 2.5rem);
+        gap: clamp(.4rem, .9cqw, .6rem);
         transform: none;
+    }
+
+    /* Expanded tablet: socials and collapse control share one baseline. */
+    .muu-ec-nav-lefttab.is-menu-open .muu-ec-socials {
+        bottom: clamp(1.75rem, 5cqh, 2.5rem);
+    }
+
+    .muu-ec-nav-lefttab.is-menu-open .muu-ec-panel-close {
+        bottom: clamp(1.25rem, 3.5cqh, 1.75rem);
+    }
+
+    .muu-ec-nav-lefttab.is-menu-open .muu-ec-socials {
+        height: clamp(.875rem, 1.4cqw, 1.125rem);
+        align-items: center;
     }
 
     .muu-ec-panel-eyebrow {
@@ -509,8 +539,15 @@
 
     .muu-ec-booking {
         top: 54%;
-        left: clamp(6.5rem, 17cqw, 10.5rem);
+        left: clamp(5rem, 12cqw, 7rem);
         width: clamp(5.75rem, 12cqw, 7.5rem);
+    }
+
+    .muu-ec-panel-close {
+        right: clamp(.5rem, 1.25cqw, .875rem);
+        bottom: clamp(.75rem, 2cqh, 1.25rem);
+        width: clamp(3.75rem, 6.5cqw, 5.5rem);
+        transform: none;
     }
 }
 
@@ -535,8 +572,7 @@
 
     /* Collapsed left rail: keep its identity, just give its content room. */
     .muu-ec-side-label {
-        font-size: clamp(.625rem, 3cqw, .75rem);
-        letter-spacing: clamp(.75px, .35cqw, 1.25px);
+        display: none;
     }
 
     .muu-ec-socials {
@@ -549,16 +585,18 @@
         width: clamp(.875rem, 4cqw, 1.05rem);
     }
 
-    /* Expanded mobile becomes a viewport overlay instead of trying to preserve
-       the desktop hero geometry inside a narrow container. */
+    /* Expanded mobile spans the component width but grows only as tall as
+       its content instead of covering the whole viewport. */
     .muu-ec-nav-lefttab.is-menu-open .muu-ec-lefttab {
-        position: fixed;
+        position: absolute;
         z-index: 1000;
-        inset: 0;
-        width: 100vw;
-        height: 100dvh;
-        overflow-x: hidden;
-        overflow-y: auto;
+        top: 0;
+        right: 0;
+        left: 0;
+        width: 100%;
+        height: auto;
+        min-height: 0;
+        overflow: visible;
         background: rgba(0, 0, 0, .94);
     }
 
@@ -570,11 +608,11 @@
         display: flex;
         width: 100%;
         min-width: 0;
-        min-height: 100dvh;
+        min-height: 0;
         height: auto;
         flex-direction: column;
         align-items: flex-start;
-        padding: clamp(4.25rem, 18vw, 5.25rem) 1.25rem 5.5rem;
+        padding: clamp(4.25rem, 18vw, 5.25rem) 1.25rem clamp(4.5rem, 18vw, 5.5rem);
     }
 
     .muu-ec-nav-lefttab.is-menu-open .muu-ec-language {
@@ -609,7 +647,7 @@
     }
 
     .muu-ec-nav-lefttab.is-menu-open .muu-ec-socials {
-        position: fixed;
+        position: absolute;
         z-index: 1001;
         right: auto;
         bottom: 1.25rem;
@@ -620,12 +658,30 @@
     }
 
     .muu-ec-nav-lefttab.is-menu-open .muu-ec-panel-close {
-        position: fixed;
+        position: absolute;
         z-index: 1001;
         right: 1.25rem;
         bottom: 1.25rem;
         width: clamp(4.25rem, 22vw, 5.5rem);
         transform: none;
+    }
+
+    /* Keep the two bottom controls on one visual baseline. */
+    .muu-ec-nav-lefttab.is-menu-open .muu-ec-socials,
+    .muu-ec-nav-lefttab.is-menu-open .muu-ec-panel-close {
+        bottom: 1.25rem;
+    }
+
+    .muu-ec-nav-lefttab.is-menu-open .muu-ec-socials {
+        height: clamp(1rem, 4cqw, 1.25rem);
+        align-items: center;
+    }
+
+    .muu-ec-nav-lefttab.is-menu-open .muu-ec-panel-close {
+        display: flex;
+        height: clamp(1rem, 4cqw, 1.25rem);
+        align-items: center;
+        padding: 0;
     }
 
     .muu-ec-host-container:has(> .muu-ec-nav-lefttab.is-menu-open) > .muu-ec-orange-shape {

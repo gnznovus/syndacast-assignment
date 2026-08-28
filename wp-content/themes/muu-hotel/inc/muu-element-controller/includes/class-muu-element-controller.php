@@ -261,6 +261,11 @@ final class MUU_Element_Controller {
                         <img src="<?php echo esc_url( MUU_EC_URL . 'assets/images/click-hide.svg' ); ?>" alt="">
                     </button>
                 </div>
+                <nav class="muu-ec-socials" aria-label="<?php esc_attr_e( 'Social media', 'muu-element-controller' ); ?>">
+                    <a href="<?php echo esc_url( $options['youtube_url'] ); ?>" aria-label="YouTube"><img src="<?php echo esc_url( MUU_EC_URL . 'assets/images/social-1.svg' ); ?>" alt=""></a>
+                    <a href="<?php echo esc_url( $options['tiktok_url'] ); ?>" aria-label="TikTok"><img src="<?php echo esc_url( MUU_EC_URL . 'assets/images/social-2.svg' ); ?>" alt=""></a>
+                    <a class="muu-ec-instagram" href="<?php echo esc_url( $options['instagram_url'] ); ?>" aria-label="Instagram"><span></span></a>
+                </nav>
             </aside>
             <?php endif; ?>
             <header class="muu-ec-navbar">
@@ -278,11 +283,6 @@ final class MUU_Element_Controller {
             </header>
             <?php if ( $render_lefttab ) : ?>
             <p class="muu-ec-side-label"><?php echo esc_html( $options['side_label'] ); ?></p>
-            <nav class="muu-ec-socials" aria-label="<?php esc_attr_e( 'Social media', 'muu-element-controller' ); ?>">
-                <a href="<?php echo esc_url( $options['youtube_url'] ); ?>" aria-label="YouTube"><img src="<?php echo esc_url( MUU_EC_URL . 'assets/images/social-1.svg' ); ?>" alt=""></a>
-                <a href="<?php echo esc_url( $options['tiktok_url'] ); ?>" aria-label="TikTok"><img src="<?php echo esc_url( MUU_EC_URL . 'assets/images/social-2.svg' ); ?>" alt=""></a>
-                <a class="muu-ec-instagram" href="<?php echo esc_url( $options['instagram_url'] ); ?>" aria-label="Instagram"><span></span></a>
-            </nav>
             <?php endif; ?>
         </div>
         <?php if ( '' !== trim( $options['custom_css'] ) ) : ?><style><?php echo wp_strip_all_tags( $options['custom_css'] ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?></style><?php endif; ?>

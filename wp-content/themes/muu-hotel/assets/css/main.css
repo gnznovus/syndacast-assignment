@@ -126,3 +126,9 @@ video {
         transform: none;
     }
 }
+
+/* Newsletter placeholder is intentionally full white over the image background. */
+.muu-newsletter-form input::placeholder {
+    color: #fff;
+    opacity: 1;
+}
