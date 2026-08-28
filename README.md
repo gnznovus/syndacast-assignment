@@ -23,12 +23,43 @@ The project uses a lightweight custom WordPress theme with Elementor Free for ed
 - Docker Desktop / Docker Engine with Docker Compose
 - internet access during the first setup so required WordPress plugins can be installed automatically
 
-### Setup
+### Copy & Run
+
+Choose a directory where you want the project, then run the commands for your environment.
+
+**Windows PowerShell**
+
+```powershell
+cd <where-you-want-the-project>
+git clone https://github.com/gnznovus/syndacast-assignment.git
+cd syndacast-assignment
+Copy-Item .env.example .env
+docker compose up -d
+docker compose logs -f setup
+```
+
+**macOS / Linux / Git Bash**
 
 ```bash
+cd <where-you-want-the-project>
+git clone https://github.com/gnznovus/syndacast-assignment.git
+cd syndacast-assignment
 cp .env.example .env
 docker compose up -d
+docker compose logs -f setup
 ```
+
+Setup is ready when the `setup` container exits successfully.
+
+```text
+Website:  http://localhost:8080/
+Admin:    http://localhost:8080/wp-admin/
+
+Username: reviewer
+Password: muu-reviewer
+```
+
+### Setup Details
 
 On first run:
 
