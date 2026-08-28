@@ -70,3 +70,23 @@
         loadPanel(link);
     });
 })();
+
+    document.addEventListener('click', function (event) {
+        var button = event.target.closest('[data-muu-copy-shortcode]');
+        if (!button) {
+            return;
+        }
+
+        var value = button.getAttribute('data-muu-copy-shortcode') || '';
+        if (!value || !navigator.clipboard) {
+            return;
+        }
+
+        navigator.clipboard.writeText(value).then(function () {
+            var original = button.textContent;
+            button.textContent = 'Copied';
+            window.setTimeout(function () {
+                button.textContent = original;
+            }, 1200);
+        });
+    });
