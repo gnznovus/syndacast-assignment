@@ -24,34 +24,34 @@ final class MUU_Footer_Controller {
 
     public static function defaults(): array {
         return array(
-            'background_image_id' => 0,
-            'slh_image_id'        => 0,
-            'logo_text'           => 'muu',
-            'logo_url'            => home_url( '/' ),
-            'gallery_label'       => 'Gallery',
-            'gallery_url'         => '#',
-            'health_label'        => 'Health & Safety',
-            'health_url'          => '#',
-            'sustainability_label'=> 'Sustainability',
-            'sustainability_url'  => '#',
-            'privacy_label'       => 'Privacy Policy',
-            'privacy_url'         => '#',
-            'contact_label'       => 'Contact',
-            'contact_url'         => home_url( '/contact/' ),
-            'follow_label'        => 'FOLLOW US',
-            'youtube_url'         => '#',
-            'tiktok_url'          => '#',
-            'instagram_url'       => '#',
-            'reservations_label'  => 'RESERVATIONS',
-            'reservations_phone'  => '+66 (0) 2 090 9000',
-            'reservations_fax'    => '+66 (0) 2 090 9090',
-            'reservations_email'  => 'rsvn.akt8@theakyra.com',
-            'inquiries_label'     => 'OTHER INQUIRIES',
-            'inquiries_phone'     => '+66 (0) 2 090 9000',
-            'inquiries_fax'       => '+66 (0) 2 090 9090',
-            'inquiries_email'     => 'fd.akt8@theakyra.com',
-            'address'             => "88/333 Sukhumvit 55, North Klongton,\nWattana District, Bangkok 10110",
-            'copyright'           => 'Copyright © 2022 MUU Hotel. All Rights Reserved.',
+            'background_image_id'  => 0,
+            'slh_image_id'         => 0,
+            'logo_text'            => 'muu',
+            'logo_url'             => home_url( '/' ),
+            'gallery_label'        => 'Gallery',
+            'gallery_url'          => '#',
+            'health_label'         => 'Health & Safety',
+            'health_url'           => '#',
+            'sustainability_label' => 'Sustainability',
+            'sustainability_url'   => '#',
+            'privacy_label'        => 'Privacy Policy',
+            'privacy_url'          => '#',
+            'contact_label'        => 'Contact',
+            'contact_url'          => home_url( '/contact/' ),
+            'follow_label'         => 'FOLLOW US',
+            'youtube_url'          => '#',
+            'tiktok_url'           => '#',
+            'instagram_url'        => '#',
+            'reservations_label'   => 'RESERVATIONS',
+            'reservations_phone'   => '+66 (0) 2 090 9000',
+            'reservations_fax'     => '+66 (0) 2 090 9090',
+            'reservations_email'   => 'rsvn.akt8@theakyra.com',
+            'inquiries_label'      => 'OTHER INQUIRIES',
+            'inquiries_phone'      => '+66 (0) 2 090 9000',
+            'inquiries_fax'        => '+66 (0) 2 090 9090',
+            'inquiries_email'      => 'fd.akt8@theakyra.com',
+            'address'              => "88/333 Sukhumvit 55, North Klongton,\nWattana District, Bangkok 10110",
+            'copyright'            => 'Copyright © 2022 MUU Hotel. All Rights Reserved.',
         );
     }
 
@@ -100,7 +100,6 @@ final class MUU_Footer_Controller {
         }
 
         $output['address'] = sanitize_textarea_field( $input['address'] ?? $defaults['address'] );
-
         return $output;
     }
 
@@ -126,7 +125,7 @@ final class MUU_Footer_Controller {
             'jquery',
             <<<'JS'
 (function ($) {
-    function updatePreview($field, attachment) {
+    function setMedia($field, attachment) {
         var $row = $field.closest('.muu-media-field');
         $field.val(attachment ? attachment.id : '');
         $row.find('.muu-media-preview').html(attachment ? '<img src="' + attachment.url + '" alt="">' : '');
@@ -143,14 +142,14 @@ final class MUU_Footer_Controller {
             multiple: false
         });
         frame.on('select', function () {
-            updatePreview($field, frame.state().get('selection').first().toJSON());
+            setMedia($field, frame.state().get('selection').first().toJSON());
         });
         frame.open();
     });
 
     $(document).on('click', '.muu-media-remove', function (event) {
         event.preventDefault();
-        updatePreview($('#' + $(this).data('target')), null);
+        setMedia($('#' + $(this).data('target')), null);
     });
 })(jQuery);
 JS
@@ -200,8 +199,8 @@ JS
         ?>
         <div class="wrap">
             <h1><?php esc_html_e( 'MUU Footer', 'muu-element-controller' ); ?></h1>
-            <p><?php esc_html_e( 'Content rendered by [muu_footer]. Layout remains theme-owned; content and media remain editable here.', 'muu-element-controller' ); ?></p>
-            <p><code>[muu_footer tablet_columns="2"]</code> &mdash; switch to <code>tablet_columns="1"</code> for a stacked tablet layout.</p>
+            <p><?php esc_html_e( 'Content rendered by [muu_footer]. Layout stays theme-owned while content and media remain editable here.', 'muu-element-controller' ); ?></p>
+            <p><code>[muu_footer tablet_columns="2"]</code> &mdash; use <code>tablet_columns="1"</code> for a stacked tablet layout.</p>
             <form action="options.php" method="post">
                 <?php settings_fields( 'muu_footer_settings_group' ); ?>
                 <table class="form-table" role="presentation"><tbody>
@@ -230,7 +229,7 @@ JS
 
     private static function icon( string $type ): string {
         $paths = array(
-            'phone' => '<path d="M6.6 2.5 9 2l1.1 4-2.2 1.1a13.1 13.1 0 0 0 5 5L14 9.9l4 1.1-.5 2.4c-.3 1.6-1.8 2.7-3.4 2.4C8 14.8 3.2 10 2.2 3.9 1.9 2.3 3  .8 4.6.5Z"/>',
+            'phone' => '<path d="M6.6 2.5 9 2l1.1 4-2.2 1.1a13.1 13.1 0 0 0 5 5L14 9.9l4 1.1-.5 2.4c-.3 1.6-1.8 2.7-3.4 2.4C8 14.8 3.2 10 2.2 3.9 1.9 2.3 3 .8 4.6.5Z"/>',
             'fax'   => '<path d="M5 3h10v5H5zM3 8h14a2 2 0 0 1 2 2v6h-4v3H5v-3H1v-6a2 2 0 0 1 2-2Zm4 6v3h6v-3H7Z"/>',
             'mail'  => '<path d="M2 4h16v12H2V4Zm2 2v.3l6 4.3 6-4.3V6H4Zm12 8V8.8l-6 4.2-6-4.2V14h12Z"/>',
             'pin'   => '<path d="M10 1a6 6 0 0 1 6 6c0 4.3-6 11-6 11S4 11.3 4 7a6 6 0 0 1 6-6Zm0 3a3 3 0 1 0 0 6 3 3 0 0 0 0-6Z"/>',
@@ -241,16 +240,13 @@ JS
     public function render_footer( $atts = array() ): string {
         $options = self::options();
         $atts = shortcode_atts(
-            array(
-                'tablet_columns' => '2',
-                'class'          => '',
-            ),
+            array( 'tablet_columns' => '2', 'class' => '' ),
             is_array( $atts ) ? $atts : array(),
             'muu_footer'
         );
 
-        $tablet_columns = '1' === (string) $atts['tablet_columns'] ? '1' : '2';
-        $background_url = $options['background_image_id'] ? wp_get_attachment_image_url( absint( $options['background_image_id'] ), 'full' ) : '';
+        $tablet_columns  = '1' === (string) $atts['tablet_columns'] ? '1' : '2';
+        $background_url  = $options['background_image_id'] ? wp_get_attachment_image_url( absint( $options['background_image_id'] ), 'full' ) : '';
         $background_style = $background_url ? '--muu-footer-background:url(' . esc_url( $background_url ) . ');' : '';
         $slh = $options['slh_image_id'] ? wp_get_attachment_image( absint( $options['slh_image_id'] ), 'medium', false, array( 'class' => 'muu-footer__slh', 'loading' => 'lazy' ) ) : '';
 
@@ -298,7 +294,7 @@ JS
                         <p><?php echo self::icon( 'phone' ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?><a href="<?php echo esc_url( self::phone_href( $options['inquiries_phone'] ) ); ?>"><?php echo esc_html( $options['inquiries_phone'] ); ?></a></p>
                         <p><?php echo self::icon( 'fax' ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?><span><?php echo esc_html( $options['inquiries_fax'] ); ?></span></p>
                         <p><?php echo self::icon( 'mail' ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?><a href="mailto:<?php echo esc_attr( antispambot( $options['inquiries_email'] ) ); ?>"><?php echo esc_html( antispambot( $options['inquiries_email'] ) ); ?></a></p>
-                        <p><?php echo self::icon( 'pin' ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?><address><?php echo nl2br( esc_html( $options['address'] ) ); ?></address></p>
+                        <div class="muu-footer__address-row"><?php echo self::icon( 'pin' ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?><address><?php echo nl2br( esc_html( $options['address'] ) ); ?></address></div>
                     </section>
                 </div>
             </div>
