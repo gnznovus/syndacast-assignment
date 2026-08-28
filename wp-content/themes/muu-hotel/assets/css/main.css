@@ -92,6 +92,10 @@ video {
     margin: 0;
 }
 
+.muu-ec-language-active {
+    color: var(--muu-orange);
+}
+
 .screen-reader-text {
     position: absolute;
     width: 1px;

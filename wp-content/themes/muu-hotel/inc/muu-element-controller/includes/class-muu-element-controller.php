@@ -226,6 +226,9 @@ final class MUU_Element_Controller {
         );
 
         $panel_id = wp_unique_id( 'muu-ec-panel-' );
+        $language_parts = array_map( 'trim', explode( '|', (string) $options['language_label'], 2 ) );
+        $active_language = $language_parts[0] ?? '';
+        $inactive_language = $language_parts[1] ?? '';
 
         ob_start();
         ?>
@@ -233,7 +236,7 @@ final class MUU_Element_Controller {
             <?php if ( $render_lefttab ) : ?>
             <aside class="muu-ec-lefttab" id="<?php echo esc_attr( $panel_id ); ?>" aria-hidden="true" inert>
                 <div class="muu-ec-panel-content">
-                    <p class="muu-ec-language"><?php echo esc_html( $options['language_label'] ); ?></p>
+                    <p class="muu-ec-language"><span class="muu-ec-language-active"><?php echo esc_html( $active_language ); ?></span><?php if ( '' !== $inactive_language ) : ?> | <?php echo esc_html( $inactive_language ); ?><?php endif; ?></p>
                     <p class="muu-ec-panel-eyebrow"><?php echo esc_html( $options['panel_eyebrow'] ); ?></p>
                     <h2 class="muu-ec-panel-headline"><?php echo esc_html( $options['panel_headline'] ); ?></h2>
                     <a class="muu-ec-booking" href="<?php echo esc_url( $options['booking_url'] ); ?>">
