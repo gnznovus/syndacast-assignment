@@ -1,0 +1,206 @@
+.muu-controller-admin {
+    max-width: 1180px;
+}
+
+.muu-controller-header {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 24px;
+    margin: 22px 0 18px;
+}
+
+.muu-controller-header h1 {
+    margin-bottom: 6px;
+}
+
+.muu-controller-header p,
+.muu-admin-section__heading p {
+    max-width: 760px;
+    margin: 0;
+    color: #646970;
+}
+
+.muu-controller-tabs {
+    margin-bottom: 0;
+}
+
+.muu-controller-panel {
+    position: relative;
+    min-height: 240px;
+    padding-top: 24px;
+    transition: opacity .15s ease;
+}
+
+.muu-controller-panel.is-loading {
+    opacity: .45;
+    pointer-events: none;
+}
+
+.muu-admin-section__heading {
+    margin-bottom: 20px;
+}
+
+.muu-admin-section__heading h2 {
+    margin: 0 0 6px;
+    font-size: 22px;
+}
+
+.muu-status-grid {
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: 16px;
+    margin-bottom: 20px;
+}
+
+.muu-status-card,
+.muu-admin-card {
+    border: 1px solid #dcdcde;
+    border-radius: 6px;
+    background: #fff;
+    box-shadow: 0 1px 1px rgba(0, 0, 0, .04);
+}
+
+.muu-status-card {
+    display: flex;
+    min-height: 118px;
+    flex-direction: column;
+    gap: 5px;
+    padding: 18px;
+}
+
+.muu-status-card__label {
+    color: #646970;
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: .04em;
+    text-transform: uppercase;
+}
+
+.muu-status-card strong {
+    margin-top: auto;
+    font-size: 20px;
+}
+
+.muu-status-card strong.is-ok {
+    color: #008a20;
+}
+
+.muu-status-card strong.is-warning {
+    color: #996800;
+}
+
+.muu-status-card > span:last-child {
+    color: #646970;
+}
+
+.muu-admin-card {
+    margin-bottom: 16px;
+    padding: 18px 20px;
+}
+
+.muu-admin-card > h3 {
+    margin: 0 0 10px;
+    font-size: 16px;
+}
+
+.muu-admin-card .form-table {
+    margin: 0;
+}
+
+.muu-admin-card .form-table th {
+    width: 220px;
+}
+
+.muu-shortcode-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin: 12px 0 18px;
+}
+
+.muu-shortcode-list code {
+    padding: 6px 9px;
+    border-radius: 4px;
+}
+
+.muu-quick-actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+}
+
+.muu-subtabs {
+    display: flex;
+    gap: 4px;
+    margin-bottom: 18px;
+    border-bottom: 1px solid #c3c4c7;
+}
+
+.muu-subtabs a {
+    padding: 9px 14px;
+    margin-bottom: -1px;
+    color: #50575e;
+    border: 1px solid transparent;
+    text-decoration: none;
+    font-weight: 600;
+}
+
+.muu-subtabs a:hover,
+.muu-subtabs a:focus {
+    color: #135e96;
+}
+
+.muu-subtabs a.is-active {
+    color: #1d2327;
+    border-color: #c3c4c7 #c3c4c7 #f0f0f1;
+    background: #f0f0f1;
+}
+
+.muu-settings-form {
+    max-width: 980px;
+}
+
+.muu-settings-form > .submit {
+    margin-top: 20px;
+}
+
+.muu-admin-note {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin: 8px 0 16px;
+    padding: 12px 14px;
+    border-left: 4px solid #72aee6;
+    background: #fff;
+}
+
+.muu-media-preview img {
+    max-height: 180px;
+    object-fit: contain;
+}
+
+@media (max-width: 960px) {
+    .muu-status-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+}
+
+@media (max-width: 600px) {
+    .muu-status-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .muu-admin-card {
+        padding: 14px;
+    }
+
+    .muu-admin-card .form-table th {
+        width: auto;
+    }
+
+    .muu-admin-note {
+        align-items: flex-start;
+        flex-direction: column;
+    }
+}
