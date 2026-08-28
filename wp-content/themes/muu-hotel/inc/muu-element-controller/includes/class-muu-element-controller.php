@@ -209,6 +209,9 @@ final class MUU_Element_Controller {
             'class' => '', 'target' => '', 'left-tab' => 'true', 'left_tab' => '',
             'logo-color' => '', 'logo_color' => '', 'nav-color' => '', 'nav_color' => '',
             'divider-color' => '', 'divider_color' => '',
+            'mobile-logo-color' => '', 'mobile_logo_color' => '',
+            'mobile-nav-color' => '', 'mobile_nav_color' => '',
+            'mobile-divider-color' => '', 'mobile_divider_color' => '',
         ), $raw_atts, 'muu_nav_lefttab' );
         $target  = '' !== trim( (string) $atts['target'] ) ? sanitize_text_field( $atts['target'] ) : $options['target_selector'];
         $logo_color_value = '' !== trim( (string) $atts['logo-color'] ) ? $atts['logo-color'] : $atts['logo_color'];
@@ -218,11 +221,22 @@ final class MUU_Element_Controller {
         $nav_color = sanitize_hex_color( $nav_color_value ) ?: $options['text_color'];
         $divider_color = sanitize_hex_color( $divider_color_value ) ?: $options['line_color'];
 
+        $mobile_logo_color_value = '' !== trim( (string) $atts['mobile-logo-color'] ) ? $atts['mobile-logo-color'] : $atts['mobile_logo_color'];
+        $mobile_nav_color_value = '' !== trim( (string) $atts['mobile-nav-color'] ) ? $atts['mobile-nav-color'] : $atts['mobile_nav_color'];
+        $mobile_divider_color_value = '' !== trim( (string) $atts['mobile-divider-color'] ) ? $atts['mobile-divider-color'] : $atts['mobile_divider_color'];
+        $mobile_logo_color = sanitize_hex_color( $mobile_logo_color_value ) ?: $logo_color;
+        $mobile_nav_color = sanitize_hex_color( $mobile_nav_color_value ) ?: $nav_color;
+        $mobile_divider_color = sanitize_hex_color( $mobile_divider_color_value ) ?: $divider_color;
+
         $style = sprintf(
             '--muu-ec-header-max:%1$dpx;--muu-ec-rail-max:%2$dpx;--muu-ec-rail-height:%3$d%%;--muu-ec-text:%4$s;--muu-ec-line:%5$s;--muu-ec-rail:%6$s;--muu-ec-panel-percent:%7$d%%;--muu-ec-logo-color:%8$s;--muu-ec-nav-color:%9$s;',
             absint( $options['header_height'] ), absint( $options['rail_width'] ), absint( $options['rail_height_percent'] ),
             esc_attr( $options['text_color'] ), esc_attr( $divider_color ), esc_attr( $options['rail_color'] ), absint( $options['panel_width_percent'] ),
             esc_attr( $logo_color ), esc_attr( $nav_color )
+        );
+        $style .= sprintf(
+            '--muu-ec-mobile-logo-color:%1$s;--muu-ec-mobile-nav-color:%2$s;--muu-ec-mobile-line:%3$s;',
+            esc_attr( $mobile_logo_color ), esc_attr( $mobile_nav_color ), esc_attr( $mobile_divider_color )
         );
 
         $panel_id = wp_unique_id( 'muu-ec-panel-' );
