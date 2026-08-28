@@ -653,6 +653,24 @@
         transform: none;
     }
 
+    /* Keep the two bottom controls on one visual baseline. */
+    .muu-ec-nav-lefttab.is-menu-open .muu-ec-socials,
+    .muu-ec-nav-lefttab.is-menu-open .muu-ec-panel-close {
+        bottom: 1.25rem;
+    }
+
+    .muu-ec-nav-lefttab.is-menu-open .muu-ec-socials {
+        height: clamp(1rem, 4cqw, 1.25rem);
+        align-items: center;
+    }
+
+    .muu-ec-nav-lefttab.is-menu-open .muu-ec-panel-close {
+        display: flex;
+        height: clamp(1rem, 4cqw, 1.25rem);
+        align-items: center;
+        padding: 0;
+    }
+
     .muu-ec-host-container:has(> .muu-ec-nav-lefttab.is-menu-open) > .muu-ec-orange-shape {
         display: none;
     }
