@@ -510,6 +510,17 @@
         transform: none;
     }
 
+    /* Expanded tablet: socials and collapse control share one baseline. */
+    .muu-ec-nav-lefttab.is-menu-open .muu-ec-socials,
+    .muu-ec-nav-lefttab.is-menu-open .muu-ec-panel-close {
+        bottom: clamp(1.75rem, 5cqh, 2.5rem);
+    }
+
+    .muu-ec-nav-lefttab.is-menu-open .muu-ec-socials {
+        height: clamp(.875rem, 1.4cqw, 1.125rem);
+        align-items: center;
+    }
+
     .muu-ec-panel-eyebrow {
         margin-left: clamp(2.5rem, 5cqw, 4rem);
         margin-top: clamp(3rem, 8cqh, 5rem);
