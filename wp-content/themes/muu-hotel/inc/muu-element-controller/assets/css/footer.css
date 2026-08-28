@@ -313,6 +313,10 @@
         text-align: left;
     }
 
+    .muu-footer__contacts h2 {
+        text-align: center;
+    }
+
     .muu-footer__nav,
     .muu-footer__brand,
     .muu-footer__contacts {
