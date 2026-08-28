@@ -16,7 +16,6 @@ final class MUU_Footer_Controller {
     }
 
     private function __construct() {
-        add_action( 'admin_menu', array( $this, 'add_settings_page' ) );
         add_action( 'admin_init', array( $this, 'register_settings' ) );
         add_action( 'admin_enqueue_scripts', array( $this, 'enqueue_admin_media' ) );
         add_shortcode( 'muu_footer', array( $this, 'render_footer' ) );
@@ -117,19 +116,8 @@ final class MUU_Footer_Controller {
         return $output;
     }
 
-    public function add_settings_page(): void {
-        add_submenu_page(
-            'muu-theme-controller',
-            __( 'MUU Footer', 'muu-element-controller' ),
-            __( 'Footer', 'muu-element-controller' ),
-            'manage_options',
-            'muu-footer',
-            array( $this, 'render_settings_page' )
-        );
-    }
-
     public function enqueue_admin_media(): void {
-        if ( ! is_admin() || ( $_GET['page'] ?? '' ) !== 'muu-footer' ) { // phpcs:ignore WordPress.Security.NonceVerification.Recommended
+        if ( ! is_admin() || ( $_GET['page'] ?? '' ) !== 'muu-theme-controller' ) { // phpcs:ignore WordPress.Security.NonceVerification.Recommended
             return;
         }
 
@@ -189,53 +177,100 @@ JS
         <?php
     }
 
-    public function render_settings_page(): void {
+    public function render_settings_panel(): void {
         if ( ! current_user_can( 'manage_options' ) ) {
             return;
         }
 
         $options = self::options();
-        $fields = array(
-            'logo_text' => array( 'Logo text', 'text' ), 'logo_url' => array( 'Logo URL', 'link' ),
-            'gallery_label' => array( 'Gallery label', 'text' ), 'gallery_url' => array( 'Gallery URL', 'link' ),
-            'health_label' => array( 'Health & Safety label', 'text' ), 'health_url' => array( 'Health & Safety URL', 'link' ),
-            'sustainability_label' => array( 'Sustainability label', 'text' ), 'sustainability_url' => array( 'Sustainability URL', 'link' ),
-            'privacy_label' => array( 'Privacy Policy label', 'text' ), 'privacy_url' => array( 'Privacy Policy URL', 'link' ),
-            'contact_label' => array( 'Contact label', 'text' ), 'contact_url' => array( 'Contact URL', 'link' ),
-            'follow_label' => array( 'Follow us label', 'text' ),
-            'youtube_url' => array( 'YouTube URL', 'link' ), 'tiktok_url' => array( 'TikTok URL', 'link' ), 'instagram_url' => array( 'Instagram URL', 'link' ),
-            'reservations_label' => array( 'Reservations heading', 'text' ), 'reservations_phone' => array( 'Reservations phone', 'text' ),
-            'reservations_fax' => array( 'Reservations fax', 'text' ), 'reservations_email' => array( 'Reservations email', 'email' ),
-            'inquiries_label' => array( 'Other inquiries heading', 'text' ), 'inquiries_phone' => array( 'Other inquiries phone', 'text' ),
-            'inquiries_fax' => array( 'Other inquiries fax', 'text' ), 'inquiries_email' => array( 'Other inquiries email', 'email' ),
-            'copyright' => array( 'Copyright', 'text' ),
+        $groups  = array(
+            __( 'Media & branding', 'muu-element-controller' ) => array(
+                'logo_text' => array( 'Logo text', 'text' ),
+                'logo_url'  => array( 'Logo URL', 'link' ),
+            ),
+            __( 'Navigation links', 'muu-element-controller' ) => array(
+                'gallery_label'        => array( 'Gallery label', 'text' ),
+                'gallery_url'          => array( 'Gallery URL', 'link' ),
+                'health_label'         => array( 'Health & Safety label', 'text' ),
+                'health_url'           => array( 'Health & Safety URL', 'link' ),
+                'sustainability_label' => array( 'Sustainability label', 'text' ),
+                'sustainability_url'   => array( 'Sustainability URL', 'link' ),
+                'privacy_label'        => array( 'Privacy Policy label', 'text' ),
+                'privacy_url'          => array( 'Privacy Policy URL', 'link' ),
+                'contact_label'        => array( 'Contact label', 'text' ),
+                'contact_url'          => array( 'Contact URL', 'link' ),
+            ),
+            __( 'Social', 'muu-element-controller' ) => array(
+                'follow_label'  => array( 'Follow us label', 'text' ),
+                'youtube_url'   => array( 'YouTube URL', 'link' ),
+                'tiktok_url'    => array( 'TikTok URL', 'link' ),
+                'instagram_url' => array( 'Instagram URL', 'link' ),
+            ),
+            __( 'Reservations', 'muu-element-controller' ) => array(
+                'reservations_label' => array( 'Reservations heading', 'text' ),
+                'reservations_phone' => array( 'Reservations phone', 'text' ),
+                'reservations_fax'   => array( 'Reservations fax', 'text' ),
+                'reservations_email' => array( 'Reservations email', 'email' ),
+            ),
+            __( 'Other inquiries', 'muu-element-controller' ) => array(
+                'inquiries_label' => array( 'Other inquiries heading', 'text' ),
+                'inquiries_phone' => array( 'Other inquiries phone', 'text' ),
+                'inquiries_fax'   => array( 'Other inquiries fax', 'text' ),
+                'inquiries_email' => array( 'Other inquiries email', 'email' ),
+            ),
+            __( 'Legal', 'muu-element-controller' ) => array(
+                'copyright' => array( 'Copyright', 'text' ),
+            ),
         );
         ?>
-        <div class="wrap">
-            <h1><?php esc_html_e( 'MUU Footer', 'muu-element-controller' ); ?></h1>
-            <p><?php esc_html_e( 'Content rendered by [muu_footer]. Layout stays theme-owned while content and media remain editable here.', 'muu-element-controller' ); ?></p>
-            <p><code>[muu_footer tablet_columns="2"]</code> &mdash; use <code>tablet_columns="1"</code> for a stacked tablet layout.</p>
-            <p class="description"><?php esc_html_e( 'Link fields accept #, anchors such as #offers, relative paths such as /contact/, or full URLs.', 'muu-element-controller' ); ?></p>
-            <form action="options.php" method="post">
-                <?php settings_fields( 'muu_footer_settings_group' ); ?>
+        <form action="options.php" method="post" class="muu-settings-form">
+            <?php settings_fields( 'muu_footer_settings_group' ); ?>
+
+            <div class="muu-admin-card">
+                <h3><?php esc_html_e( 'Media & branding', 'muu-element-controller' ); ?></h3>
                 <table class="form-table" role="presentation"><tbody>
                     <?php self::media_field( 'background_image_id', 'Footer background image', absint( $options['background_image_id'] ) ); ?>
                     <?php self::media_field( 'slh_image_id', 'Small Luxury Hotels logo', absint( $options['slh_image_id'] ) ); ?>
-                    <?php foreach ( $fields as $key => $field ) : ?>
+                    <?php foreach ( $groups[ __( 'Media & branding', 'muu-element-controller' ) ] as $key => $field ) : ?>
                         <?php $input_type = 'link' === $field[1] ? 'text' : $field[1]; ?>
                         <tr>
                             <th scope="row"><label for="muu-footer-<?php echo esc_attr( $key ); ?>"><?php echo esc_html( $field[0] ); ?></label></th>
                             <td><input class="regular-text" id="muu-footer-<?php echo esc_attr( $key ); ?>" name="muu_footer_settings[<?php echo esc_attr( $key ); ?>]" type="<?php echo esc_attr( $input_type ); ?>" value="<?php echo esc_attr( $options[ $key ] ); ?>"></td>
                         </tr>
                     <?php endforeach; ?>
-                    <tr>
-                        <th scope="row"><label for="muu-footer-address"><?php esc_html_e( 'Address', 'muu-element-controller' ); ?></label></th>
-                        <td><textarea class="large-text" id="muu-footer-address" name="muu_footer_settings[address]" rows="3"><?php echo esc_textarea( $options['address'] ); ?></textarea></td>
-                    </tr>
                 </tbody></table>
-                <?php submit_button(); ?>
-            </form>
-        </div>
+            </div>
+
+            <?php foreach ( $groups as $heading => $fields ) : ?>
+                <?php if ( __( 'Media & branding', 'muu-element-controller' ) === $heading ) { continue; } ?>
+                <div class="muu-admin-card">
+                    <h3><?php echo esc_html( $heading ); ?></h3>
+                    <table class="form-table" role="presentation"><tbody>
+                        <?php foreach ( $fields as $key => $field ) : ?>
+                            <?php $input_type = 'link' === $field[1] ? 'text' : $field[1]; ?>
+                            <tr>
+                                <th scope="row"><label for="muu-footer-<?php echo esc_attr( $key ); ?>"><?php echo esc_html( $field[0] ); ?></label></th>
+                                <td><input class="regular-text" id="muu-footer-<?php echo esc_attr( $key ); ?>" name="muu_footer_settings[<?php echo esc_attr( $key ); ?>]" type="<?php echo esc_attr( $input_type ); ?>" value="<?php echo esc_attr( $options[ $key ] ); ?>"></td>
+                            </tr>
+                        <?php endforeach; ?>
+
+                        <?php if ( __( 'Other inquiries', 'muu-element-controller' ) === $heading ) : ?>
+                            <tr>
+                                <th scope="row"><label for="muu-footer-address"><?php esc_html_e( 'Address', 'muu-element-controller' ); ?></label></th>
+                                <td><textarea class="large-text" id="muu-footer-address" name="muu_footer_settings[address]" rows="3"><?php echo esc_textarea( $options['address'] ); ?></textarea></td>
+                            </tr>
+                        <?php endif; ?>
+                    </tbody></table>
+                </div>
+            <?php endforeach; ?>
+
+            <div class="muu-admin-note">
+                <code>[muu_footer tablet_columns="2"]</code>
+                <span><?php esc_html_e( 'Use tablet_columns="1" for a stacked tablet layout. Link fields accept #, anchors, relative paths, or full URLs.', 'muu-element-controller' ); ?></span>
+            </div>
+
+            <?php submit_button( __( 'Save Footer Settings', 'muu-element-controller' ) ); ?>
+        </form>
         <?php
     }
 
