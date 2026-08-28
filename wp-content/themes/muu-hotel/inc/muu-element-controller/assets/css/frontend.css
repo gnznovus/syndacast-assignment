@@ -82,7 +82,7 @@
     letter-spacing: .1em;
 }
 
-.muu-ec-language::first-letter {
+.muu-ec-language-active {
     color: #fe5000;
 }
 
@@ -317,6 +317,8 @@
     width: clamp(.875rem, 1.25cqw, 1.5rem);
     aspect-ratio: 1;
     place-items: center;
+    color: var(--muu-ec-text, #fff);
+    text-decoration: none;
 }
 
 .muu-ec-socials img {
@@ -465,6 +467,151 @@
 
 @container (max-height: 190px) {
     .muu-ec-side-label {
+        display: none;
+    }
+}
+
+
+/* Responsive nav refinements.
+   Tablet keeps the expanded composition but scales it down.
+   Mobile switches expanded mode to a readable single-column overlay. */
+@container (max-width: 900px) and (min-width: 481px) {
+    .muu-ec-nav-lefttab {
+        --muu-ec-panel-size: min(46%, 25rem);
+        --muu-ec-bottom-control-line: clamp(1.5rem, 4cqh, 2.25rem);
+    }
+
+    .muu-ec-nav-lefttab.is-menu-open .muu-ec-side-label {
+        left: clamp(2.75rem, 5cqw, 4rem);
+        font-size: clamp(.625rem, 1.5cqw, .8rem);
+        letter-spacing: 1px;
+    }
+
+    .muu-ec-nav-lefttab.is-menu-open .muu-ec-socials {
+        left: clamp(2.75rem, 5cqw, 4rem);
+        bottom: clamp(1.25rem, 4cqh, 2rem);
+        gap: clamp(.5rem, 1.2cqw, .75rem);
+        transform: none;
+    }
+
+    .muu-ec-panel-eyebrow {
+        margin-left: clamp(2.5rem, 5cqw, 4rem);
+        margin-top: clamp(3rem, 8cqh, 5rem);
+        font-size: clamp(1.15rem, 2.7cqw, 1.8rem);
+    }
+
+    .muu-ec-panel-headline {
+        width: min(66cqw, 34rem);
+        margin-left: clamp(2.5rem, 5cqw, 4rem);
+        font-size: clamp(1.5rem, 3.8cqw, 2.4rem);
+        line-height: 1.05;
+    }
+
+    .muu-ec-booking {
+        top: 50%;
+        left: clamp(6rem, 16cqw, 10rem);
+        width: clamp(5.75rem, 12cqw, 7.5rem);
+    }
+}
+
+@container (max-width: 480px) {
+    /* Contact-style nav may use white on mobile while keeping black
+       desktop/tablet colors through shortcode overrides. */
+    .muu-ec-logo {
+        color: var(--muu-ec-mobile-logo-color, var(--muu-ec-logo-color, inherit));
+    }
+
+    .muu-ec-utility a {
+        color: var(--muu-ec-mobile-nav-color, var(--muu-ec-nav-color, inherit));
+    }
+
+    .muu-ec-navbar {
+        border-bottom-color: var(--muu-ec-mobile-line, var(--muu-ec-line));
+    }
+
+    .muu-ec-utility .muu-ec-availability {
+        border-left-color: var(--muu-ec-mobile-line, var(--muu-ec-line));
+    }
+
+    /* Collapsed left rail: keep its identity, just give its content room. */
+    .muu-ec-side-label {
+        font-size: clamp(.625rem, 3cqw, .75rem);
+        letter-spacing: clamp(.75px, .35cqw, 1.25px);
+    }
+
+    .muu-ec-socials {
+        bottom: clamp(1.25rem, 5cqw, 1.75rem);
+        gap: clamp(.45rem, 2cqw, .65rem);
+        transform: translateX(-50%);
+    }
+
+    .muu-ec-socials a {
+        width: clamp(.875rem, 4cqw, 1.05rem);
+    }
+
+    /* Expanded mobile: readability wins over preserving desktop geometry. */
+    .muu-ec-nav-lefttab.is-menu-open .muu-ec-side-label {
+        display: none;
+    }
+
+    .muu-ec-nav-lefttab.is-menu-open .muu-ec-panel-content {
+        display: flex;
+        width: 100%;
+        min-width: 0;
+        height: 100%;
+        flex-direction: column;
+        align-items: flex-start;
+        padding: clamp(3.75rem, 16cqw, 4.75rem) 1.25rem 1.25rem;
+    }
+
+    .muu-ec-nav-lefttab.is-menu-open .muu-ec-language {
+        flex: 0 0 auto;
+    }
+
+    .muu-ec-nav-lefttab.is-menu-open .muu-ec-panel-eyebrow {
+        margin: clamp(1.25rem, 5cqw, 2rem) 0 0;
+        font-size: clamp(1.05rem, 5.5cqw, 1.4rem);
+    }
+
+    .muu-ec-nav-lefttab.is-menu-open .muu-ec-panel-headline {
+        width: 100%;
+        margin: .4rem 0 0;
+        font-size: clamp(1.25rem, 6cqw, 1.75rem);
+        line-height: 1.05;
+    }
+
+    .muu-ec-nav-lefttab.is-menu-open .muu-ec-booking {
+        position: static;
+        width: clamp(5.25rem, 25cqw, 6.25rem);
+        margin-top: clamp(1rem, 5cqw, 1.5rem);
+        aspect-ratio: 1.1;
+    }
+
+    .muu-ec-nav-lefttab.is-menu-open .muu-ec-booking-month {
+        font-size: clamp(.55rem, 2.8cqw, .7rem);
+    }
+
+    .muu-ec-nav-lefttab.is-menu-open .muu-ec-booking-day {
+        font-size: clamp(2rem, 10cqw, 2.75rem);
+    }
+
+    .muu-ec-nav-lefttab.is-menu-open .muu-ec-socials {
+        right: auto;
+        bottom: 1.25rem;
+        left: 1.25rem;
+        flex-direction: row;
+        gap: .7rem;
+        transform: none;
+    }
+
+    .muu-ec-nav-lefttab.is-menu-open .muu-ec-panel-close {
+        right: 1.25rem;
+        bottom: 1.25rem;
+        width: clamp(4.25rem, 22cqw, 5.5rem);
+        transform: none;
+    }
+
+    .muu-ec-host-container:has(> .muu-ec-nav-lefttab.is-menu-open) > .muu-ec-orange-shape {
         display: none;
     }
 }
