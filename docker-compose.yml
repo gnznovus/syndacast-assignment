@@ -9,6 +9,7 @@ services:
       MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD}
     volumes:
       - db_data:/var/lib/mysql
+      - ./config/db/01-wordpress.sql:/docker-entrypoint-initdb.d/01-wordpress.sql:ro
     healthcheck:
       test: ["CMD", "mysqladmin", "ping", "-h", "localhost", "-u", "root", "-p${MYSQL_ROOT_PASSWORD}"]
       interval: 10s
@@ -32,6 +33,48 @@ services:
     volumes:
       - wordpress_data:/var/www/html
       - ./wp-content/themes/muu-hotel:/var/www/html/wp-content/themes/muu-hotel
+      - ./wp-content/uploads:/var/www/html/wp-content/uploads
+      - ./config/php/uploads.ini:/usr/local/etc/php/conf.d/uploads.ini:ro
+
+  setup:
+    image: wordpress:cli-php8.3
+    depends_on:
+      db:
+        condition: service_healthy
+      wordpress:
+        condition: service_started
+    user: "33:33"
+    environment:
+      WORDPRESS_DB_HOST: db:3306
+      WORDPRESS_DB_NAME: ${WORDPRESS_DB_NAME}
+      WORDPRESS_DB_USER: ${WORDPRESS_DB_USER}
+      WORDPRESS_DB_PASSWORD: ${WORDPRESS_DB_PASSWORD}
+      SITE_URL: http://localhost:${WORDPRESS_PORT:-8080}
+      WP_CLI_CACHE_DIR: /tmp/wp-cli-cache
+    volumes:
+      - wordpress_data:/var/www/html
+      - ./wp-content/themes/muu-hotel:/var/www/html/wp-content/themes/muu-hotel
+      - ./wp-content/uploads:/var/www/html/wp-content/uploads
+    entrypoint: ["/bin/sh", "-c"]
+    command:
+      - |
+        set -eu
+        until [ -f wp-config.php ] && wp core is-installed --allow-root >/dev/null 2>&1; do
+          sleep 2
+        done
+        for plugin in elementor contact-form-7 flamingo; do
+          if ! wp plugin is-installed "$$plugin" --allow-root; then
+            wp plugin install "$$plugin" --allow-root
+          fi
+          if ! wp plugin is-active "$$plugin" --allow-root; then
+            wp plugin activate "$$plugin" --allow-root
+          fi
+        done
+        wp theme activate muu-hotel --allow-root
+        wp search-replace 'http://localhost:8080' "$$SITE_URL" --all-tables --skip-columns=guid --precise --allow-root
+        wp option update home "$$SITE_URL" --allow-root
+        wp option update siteurl "$$SITE_URL" --allow-root
+        wp rewrite flush --allow-root
 
 volumes:
   db_data:

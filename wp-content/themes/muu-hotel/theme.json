@@ -47,7 +47,7 @@
               "fontFamily": "Butler",
               "fontStyle": "normal",
               "fontWeight": "400",
-              "src": ["file:./assets/fonts/Butler/Butler-Regular.woff2"]
+              "src": ["file:./assets/fonts/Butler/Butler.woff2"]
             },
             {
               "fontFamily": "Butler",

@@ -1,12 +1,6 @@
 <?php
-/**
- * Site footer.
- *
- * @package MuuHotel
- */
+/** Blank document footer for the MUU canvas theme. @package MuuHotel */
+wp_footer();
 ?>
-    <footer class="site-footer" role="contentinfo"></footer>
-</div>
-<?php wp_footer(); ?>
 </body>
 </html>

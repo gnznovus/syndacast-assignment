@@ -1,16 +1,14 @@
 <?php
 /**
- * Front page template.
- *
- * Page layout and content are owned by the WordPress editor / Elementor.
- * The theme only provides the global site foundation.
+ * Classic fallback for sites that disable the block-template hierarchy.
+ * Elementor filters the_content() and renders the editable page document.
  *
  * @package MuuHotel
  */
 
 get_header();
 ?>
-<main id="main" class="site-main site-main--home">
+<main id="main" class="site-main muu-elementor-content">
     <?php
     while ( have_posts() ) {
         the_post();

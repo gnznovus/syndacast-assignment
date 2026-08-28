@@ -1,0 +1,723 @@
+.muu-ec-nav-lefttab {
+    position: absolute;
+    z-index: 30;
+    top: var(--muu-ec-visual-top, 0px);
+    left: var(--muu-ec-visual-left, 0px);
+    width: var(--muu-ec-visual-width, 100%);
+    height: var(--muu-ec-visual-height, 100%);
+    color: var(--muu-ec-text, #fff);
+    font-family: var(--muu-font-body, "HK Grotesk", Arial, sans-serif);
+    pointer-events: none;
+    container-type: size;
+    box-sizing: border-box;
+    --muu-ec-header-size: clamp(3.5rem, 5.8cqw, var(--muu-ec-header-max, 83px));
+    --muu-ec-rail-size: clamp(3rem, 5.15cqw, var(--muu-ec-rail-max, 74px));
+    --muu-ec-panel-size: var(--muu-ec-panel-percent, 29%);
+    --muu-ec-copy-indent: clamp(3rem, 4cqw, 4.375rem);
+    --muu-ec-bottom-control-line: clamp(1.75rem, 6cqh, 3.5rem);
+}
+
+.muu-ec-nav-lefttab *,
+.muu-ec-nav-lefttab *::before,
+.muu-ec-nav-lefttab *::after {
+    box-sizing: border-box;
+}
+
+/* The shortcode widget must not become the absolute-positioning context.
+   The component JS marks the nearest Elementor container as the host. */
+.muu-ec-host-widget {
+    position: static !important;
+}
+
+.muu-ec-host-container {
+    position: relative !important;
+}
+
+@supports selector(:has(*)) {
+    .elementor-widget-shortcode:has(.muu-ec-nav-lefttab) {
+        position: static !important;
+    }
+
+    .e-con:has(> .elementor-element > .elementor-widget-shortcode .muu-ec-nav-lefttab),
+    .e-con:has(.muu-ec-nav-lefttab) {
+        position: relative !important;
+    }
+}
+
+.muu-ec-lefttab {
+    position: absolute;
+    z-index: 1;
+    top: 0;
+    left: 0;
+    width: var(--muu-ec-rail-size);
+    height: 100%;
+    background: var(--muu-ec-rail, rgba(0, 0, 0, .5));
+    overflow: hidden;
+    pointer-events: auto;
+    transition: width .75s cubic-bezier(.22, 1, .36, 1), background-color .45s ease;
+}
+
+.muu-ec-panel-content {
+    position: relative;
+    width: 100%;
+    min-width: 18rem;
+    height: 100%;
+    padding: clamp(1rem, 2.55cqw, 3.0625rem) clamp(1rem, 3.125cqw, 3.75rem);
+    opacity: 0;
+    visibility: hidden;
+    transform: translateX(-1.5rem);
+    transition: opacity .45s ease, transform .7s cubic-bezier(.22, 1, .36, 1), visibility 0s linear .75s;
+    isolation: isolate;
+}
+
+.muu-ec-language,
+.muu-ec-panel-eyebrow,
+.muu-ec-panel-headline {
+    margin: 0;
+}
+
+.muu-ec-language {
+    font-size: clamp(.625rem, .84cqw, 1rem);
+    font-weight: 600;
+    letter-spacing: .1em;
+}
+
+.muu-ec-language::first-letter {
+    color: #fe5000;
+}
+
+.muu-ec-panel-eyebrow {
+    margin-left: var(--muu-ec-copy-indent);
+    margin-top: clamp(2rem, 6.4cqh, 4.5rem);
+    font-family: var(--muu-font-display, "Butler", Georgia, serif);
+    font-size: clamp(1.25rem, 2.3cqw, 2.75rem);
+    line-height: 1.1;
+}
+
+.muu-ec-panel-headline {
+    width: min(72cqw, 68rem);
+    max-width: none;
+    margin-left: var(--muu-ec-copy-indent);
+    margin-top: .35em;
+    font-family: var(--muu-font-display, "Butler", Georgia, serif);
+    font-size: clamp(1.4rem, 3.25cqw, 3.875rem);
+    font-weight: 500;
+    letter-spacing: .05em;
+    line-height: 1.08;
+}
+
+.muu-ec-booking {
+    position: absolute;
+    top: 45.6%;
+    left: 28%;
+    display: grid;
+    width: clamp(6.5rem, 12.5cqw, 15rem);
+    aspect-ratio: 1.2;
+    grid-template-rows: 28% 1fr;
+    color: inherit;
+    border: 1px solid var(--muu-ec-line);
+    text-align: center;
+    text-decoration: none;
+}
+
+.muu-ec-orange-shape {
+    position: absolute;
+    z-index: 29;
+    top: var(--muu-ec-visual-top, 0px);
+    left: var(--muu-ec-visual-left, 0px);
+    width: var(--muu-ec-visual-width, 100%);
+    height: var(--muu-ec-visual-height, 100%);
+    overflow: visible;
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+    transition: opacity .45s ease, visibility 0s linear .75s;
+}
+
+.muu-ec-orange-shape.is-shape-visible {
+    opacity: 1;
+    visibility: visible;
+    transition-delay: .3s, 0s;
+}
+
+.muu-ec-orange-shape > span {
+    position: absolute;
+    top: var(--muu-shape-top);
+    left: var(--muu-shape-left);
+    display: block;
+    width: var(--muu-shape-width);
+    height: var(--muu-shape-height);
+    aspect-ratio: 1.15;
+    background-color: var(--muu-shape-color);
+    opacity: var(--muu-shape-opacity);
+    transform: rotate(var(--muu-shape-rotate)) scaleX(var(--muu-shape-flip-x)) scaleY(var(--muu-shape-flip-y));
+    transform-origin: center;
+    transition: transform .75s cubic-bezier(.22, 1, .36, 1);
+    -webkit-mask: url("../images/orange-vector.svg") center / contain no-repeat;
+    mask: url("../images/orange-vector.svg") center / contain no-repeat;
+}
+
+.muu-ec-booking-month {
+    display: grid;
+    place-items: center;
+    border-bottom: 1px solid var(--muu-ec-line);
+    font-size: clamp(.625rem, 1.25cqw, 1.5rem);
+    font-weight: 700;
+    letter-spacing: .1em;
+}
+
+.muu-ec-booking-day {
+    display: grid;
+    place-items: center;
+    font-family: var(--muu-font-display, "Butler", Georgia, serif);
+    font-size: clamp(2.5rem, 4.5cqw, 5.25rem);
+}
+
+.muu-ec-nav-lefttab.is-menu-open .muu-ec-lefttab {
+    width: var(--muu-ec-panel-size);
+    background: rgba(0, 0, 0, .5);
+    overflow: visible;
+}
+
+.muu-ec-nav-lefttab.is-menu-open .muu-ec-panel-content {
+    opacity: 1;
+    visibility: visible;
+    transform: translateX(0);
+    transition-delay: .3s, .12s, 0s;
+}
+
+.muu-ec-nav-lefttab.is-menu-open .muu-ec-menu-toggle {
+    margin-left: var(--muu-ec-panel-size);
+}
+
+.muu-ec-nav-lefttab.is-menu-open .muu-ec-side-label {
+    left: clamp(4.5rem, 5.73cqw, 6.875rem);
+}
+
+.muu-ec-nav-lefttab.is-menu-open .muu-ec-socials {
+    left: clamp(3.75rem, 4.8cqw, 5.75rem);
+    flex-direction: row;
+    transform: translateY(50%);
+}
+
+.muu-ec-menu-toggle {
+    transition: margin-left .75s cubic-bezier(.22, 1, .36, 1);
+}
+
+.muu-ec-navbar {
+    position: absolute;
+    z-index: 3;
+    top: 0;
+    right: 0;
+    left: 0;
+    display: flex;
+    height: var(--muu-ec-header-size);
+    align-items: center;
+    border-bottom: 1px solid var(--muu-ec-line, rgba(255, 255, 255, .35));
+    pointer-events: auto;
+}
+
+.muu-ec-without-lefttab .muu-ec-navbar::before {
+    width: var(--muu-ec-rail-size);
+    height: 100%;
+    flex: 0 0 var(--muu-ec-rail-size);
+    content: "";
+}
+
+.muu-ec-menu-toggle {
+    display: grid;
+    width: var(--muu-ec-rail-size);
+    height: 100%;
+    flex: 0 0 var(--muu-ec-rail-size);
+    padding: 0;
+    place-items: center;
+    color: inherit;
+    border: 0;
+    background: transparent;
+    cursor: pointer;
+}
+
+.muu-ec-menu-toggle img {
+    width: clamp(1.25rem, 2.95cqw, 2.625rem);
+    height: auto;
+    max-width: 56%;
+}
+
+.muu-ec-logo {
+    margin-left: clamp(.625rem, 1.25cqw, 1.125rem);
+    color: var(--muu-ec-logo-color, inherit);
+    font-family: var(--muu-font-display, "Butler", Georgia, serif);
+    font-size: clamp(1.875rem, 3cqw, 2.375rem);
+    font-weight: 900;
+    line-height: 1;
+    text-decoration: none;
+}
+
+.muu-ec-utility {
+    display: flex;
+    height: 100%;
+    align-items: stretch;
+    margin-left: auto;
+}
+
+.muu-ec-utility a {
+    display: flex;
+    min-width: clamp(5rem, 10.5cqw, 9.375rem);
+    align-items: center;
+    justify-content: center;
+    padding-inline: clamp(.625rem, 2.25cqw, 2rem);
+    color: var(--muu-ec-nav-color, inherit);
+    font-size: clamp(.75rem, 1.15cqw, 1rem);
+    font-weight: 600;
+    letter-spacing: clamp(.05rem, .12cqw, .1rem);
+    text-decoration: none;
+    white-space: nowrap;
+}
+
+.muu-ec-utility .muu-ec-availability {
+    min-width: clamp(9rem, 23.6cqw, 21.25rem);
+    border-left: 1px solid var(--muu-ec-line, rgba(255, 255, 255, .35));
+    font-weight: 700;
+}
+
+.muu-ec-side-label {
+    position: absolute;
+    z-index: 2;
+    top: 50%;
+    left: calc(var(--muu-ec-rail-size) / 2);
+    width: auto;
+    margin: 0;
+    color: inherit;
+    font-size: clamp(.75rem, 1.4cqw, 1.25rem);
+    font-weight: 600;
+    letter-spacing: 2px;
+    line-height: 1;
+    writing-mode: vertical-rl;
+    transform: translate(-50%, -50%) rotate(180deg);
+    transform-origin: center;
+    pointer-events: auto;
+}
+
+.muu-ec-socials {
+    position: absolute;
+    z-index: 4;
+    bottom: var(--muu-ec-bottom-control-line);
+    left: calc(var(--muu-ec-rail-size) / 2);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: clamp(.45rem, 1cqh, .75rem);
+    transform: translate(-50%, 50%);
+    pointer-events: auto;
+    transition: left .75s cubic-bezier(.22, 1, .36, 1), transform .75s cubic-bezier(.22, 1, .36, 1);
+}
+
+.muu-ec-socials a {
+    display: grid;
+    width: clamp(.875rem, 1.25cqw, 1.5rem);
+    aspect-ratio: 1;
+    place-items: center;
+}
+
+.muu-ec-socials img {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+}
+
+.muu-ec-instagram {
+    position: relative;
+    border: 2px solid currentColor;
+    border-radius: 28%;
+}
+
+.muu-ec-instagram::before,
+.muu-ec-instagram::after {
+    position: absolute;
+    content: "";
+    border-radius: 50%;
+}
+
+.muu-ec-instagram::before {
+    inset: 25%;
+    border: 1.5px solid currentColor;
+}
+
+.muu-ec-instagram::after {
+    top: 14%;
+    right: 14%;
+    width: 16%;
+    aspect-ratio: 1;
+    background: currentColor;
+}
+
+.muu-ec-panel-close {
+    position: absolute;
+    right: clamp(1.5rem, 4cqw, 4.75rem);
+    bottom: var(--muu-ec-bottom-control-line);
+    width: clamp(4.5rem, 7.7cqw, 9.125rem);
+    padding: .75rem 0;
+    border: 0;
+    background: transparent;
+    cursor: pointer;
+    transform: translateY(50%);
+}
+
+.muu-ec-panel-close img {
+    display: block;
+    width: 100%;
+    height: auto;
+}
+
+/* Respond to the Elementor hero itself, even when the editor sidebar changes
+   the preview width without changing the browser viewport. */
+@container (max-width: 700px) {
+    .muu-ec-nav-lefttab {
+        --muu-ec-panel-size: min(82%, 24rem);
+    }
+
+    .muu-ec-logo {
+        font-size: clamp(1.6875rem, 8cqw, 2.125rem);
+    }
+
+    .muu-ec-utility a:not(.muu-ec-availability) {
+        display: none;
+    }
+
+    .muu-ec-utility .muu-ec-availability {
+        min-width: 0;
+        padding-inline: clamp(10px, 4cqw, 18px);
+        font-size: clamp(.5625rem, 2.7cqw, .75rem);
+        letter-spacing: clamp(.7px, .25cqw, 1.2px);
+    }
+
+    .muu-ec-side-label {
+        font-size: clamp(.6875rem, 3.4cqw, .875rem);
+        letter-spacing: clamp(1px, .45cqw, 1.8px);
+    }
+
+    .muu-ec-panel-headline {
+        width: calc(100cqw - clamp(4rem, 9cqw, 9rem));
+    }
+}
+
+/* On narrow mobile heroes, content plus fluid padding produces a more natural
+   bar than carrying the desktop/tablet fixed-height model downward. */
+@container (max-width: 480px) {
+    .muu-ec-nav-lefttab {
+        --muu-ec-panel-size: 100%;
+    }
+
+    .muu-ec-navbar {
+        height: auto;
+        padding-block: clamp(.25rem, 1.5cqw, .5rem);
+    }
+
+    .muu-ec-menu-toggle,
+    .muu-ec-utility {
+        height: auto;
+        align-self: stretch;
+    }
+
+    .muu-ec-nav-lefttab.is-menu-open .muu-ec-menu-toggle {
+        position: absolute;
+        right: 0;
+        margin-left: 0;
+    }
+
+    .muu-ec-nav-lefttab.is-menu-open .muu-ec-logo,
+    .muu-ec-nav-lefttab.is-menu-open .muu-ec-utility {
+        opacity: 0;
+        pointer-events: none;
+    }
+
+    .muu-ec-panel-content {
+        width: 100%;
+        min-width: 0;
+    }
+
+    .muu-ec-nav-lefttab.is-menu-open .muu-ec-lefttab {
+        overflow: hidden;
+    }
+
+    .muu-ec-panel-eyebrow {
+        margin-top: clamp(2.5rem, 13cqw, 4rem);
+    }
+
+    .muu-ec-panel-eyebrow,
+    .muu-ec-panel-headline {
+        margin-left: 0;
+    }
+
+    .muu-ec-booking {
+        top: 58%;
+        left: 20%;
+    }
+}
+
+@container (max-height: 280px) {
+    .muu-ec-side-label {
+        font-size: clamp(.5625rem, 3cqw, .75rem);
+        letter-spacing: 1px;
+    }
+}
+
+@container (max-height: 190px) {
+    .muu-ec-side-label {
+        display: none;
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .muu-ec-lefttab,
+    .muu-ec-panel-content,
+    .muu-ec-menu-toggle,
+    .muu-ec-orange-shape,
+    .muu-ec-orange-shape > span {
+        transition-duration: .01ms;
+    }
+}
+
+/* Contact form shortcode. */
+.muu-ec-contact-form-wrap {
+    width: 100%;
+    color: #111;
+    font-family: var(--muu-font-body, "HK Grotesk", Arial, sans-serif);
+}
+
+.muu-ec-contact-form {
+    display: grid;
+    gap: 0;
+    width: 100%;
+    container-type: inline-size;
+}
+
+.muu-ec-contact-form > label,
+.muu-ec-contact-form > p:first-child > label {
+    display: flex;
+    height: clamp(2rem, 5.27cqw, 2.625rem);
+    flex-direction: column;
+    gap: 0;
+    margin: 0;
+    color: inherit;
+    font-size: clamp(.75rem, 2.76cqw, 1.375rem);
+    font-weight: 400;
+    letter-spacing: .12em;
+    line-height: 1;
+}
+
+.muu-ec-contact-form > label + label,
+.muu-ec-contact-form > p:first-child > br + label {
+    margin-top: clamp(2.25rem, 9.79cqw, 4.875rem);
+}
+
+.muu-ec-contact-form > label > span,
+.muu-ec-contact-form > p:first-child > label > span {
+    flex: 0 0 auto;
+}
+
+.muu-ec-contact-form > label > .wpcf7-form-control-wrap,
+.muu-ec-contact-form > p:first-child > label > .wpcf7-form-control-wrap {
+    display: block;
+    flex: 1 1 auto;
+    min-height: 0;
+}
+
+.muu-ec-sr-only {
+    position: absolute !important;
+    width: 1px !important;
+    height: 1px !important;
+    padding: 0 !important;
+    margin: -1px !important;
+    overflow: hidden !important;
+    clip: rect(0, 0, 0, 0) !important;
+    white-space: nowrap !important;
+    border: 0 !important;
+}
+
+.muu-ec-contact-form input,
+.muu-ec-contact-form textarea {
+    width: 100%;
+    min-width: 0;
+    margin: 0;
+    flex: 1 1 auto;
+    min-height: 0;
+    padding: 0;
+    color: inherit;
+    border: 0;
+    border-bottom: 1px solid rgba(17, 17, 17, .65);
+    border-radius: 0;
+    outline: 0;
+    background: transparent;
+    box-shadow: none;
+    font: inherit;
+    resize: none;
+}
+
+.muu-ec-contact-form .wpcf7-form-control-wrap > input,
+.muu-ec-contact-form .wpcf7-form-control-wrap > textarea {
+    height: 100%;
+}
+
+.muu-ec-contact-form input::placeholder,
+.muu-ec-contact-form textarea::placeholder {
+    color: inherit;
+    opacity: 1;
+}
+
+.muu-ec-contact-form input:focus,
+.muu-ec-contact-form textarea:focus {
+    border-bottom-color: #fe5000;
+    box-shadow: 0 1px 0 #fe5000;
+}
+
+.muu-ec-contact-message textarea {
+    border-bottom: 0;
+}
+
+.muu-ec-contact-form > label.muu-ec-contact-message,
+.muu-ec-contact-form > p:first-child > label.muu-ec-contact-message {
+    height: clamp(5.25rem, 17.06cqw, 8.5rem);
+    margin-top: clamp(1.75rem, 6.02cqw, 3rem);
+}
+
+.muu-ec-contact-form:has(.muu-ec-contact-message .wpcf7-not-valid-tip) .muu-ec-contact-submit {
+    margin-top: clamp(2.25rem, 4cqw, 3rem);
+}
+
+.muu-ec-contact-submit {
+    display: grid;
+    grid-template-columns: 1fr 22.33%;
+    align-items: end;
+    height: clamp(2.5rem, 7.15cqw, 3.5625rem);
+    min-height: 0;
+    border-bottom: 1px solid rgba(17, 17, 17, .65);
+    color: inherit;
+    font-size: clamp(.75rem, 2.51cqw, 1.25rem);
+    letter-spacing: .12em;
+}
+
+.muu-ec-contact-form > p:first-child {
+    display: grid;
+    gap: 0;
+    margin: 0;
+}
+
+.muu-ec-contact-form > p:first-child > br {
+    display: none;
+}
+
+.muu-ec-contact-submit > p {
+    display: grid;
+    width: 100%;
+    height: 100%;
+    grid-column: 1 / -1;
+    grid-template-columns: 1fr 22.33%;
+    align-items: stretch;
+    margin: 0;
+}
+
+.muu-ec-contact-submit > .wpcf7-form-control-wrap,
+.muu-ec-contact-submit > p > .wpcf7-form-control-wrap {
+    align-self: center;
+    height: 100%;
+}
+
+.muu-ec-contact-submit-label {
+    align-self: center;
+    padding-left: clamp(.2rem, .63cqw, .3125rem);
+}
+
+.muu-ec-contact-submit .wpcf7-form-control-wrap input {
+    height: 100%;
+    padding-left: clamp(.2rem, .63cqw, .3125rem);
+    border: 0;
+    box-shadow: none;
+}
+
+.muu-ec-contact-submit .wpcf7-form-control-wrap input:focus {
+    border: 0;
+    box-shadow: inset 0 -2px 0 #fe5000;
+}
+
+.muu-ec-contact-submit button,
+.muu-ec-contact-submit input[type="submit"] {
+    align-self: stretch;
+    min-height: 0;
+    padding: 0 clamp(.75rem, 2cqw, 1.25rem);
+    color: inherit;
+    border: 1px solid rgba(17, 17, 17, .65);
+    border-bottom: 0;
+    border-radius: 0;
+    background: transparent;
+    font: inherit;
+    font-weight: 600;
+    letter-spacing: .12em;
+    cursor: pointer;
+}
+
+.muu-ec-contact-submit button:hover,
+.muu-ec-contact-submit button:focus-visible,
+.muu-ec-contact-submit input[type="submit"]:hover,
+.muu-ec-contact-submit input[type="submit"]:focus-visible {
+    color: #fff;
+    background: #111;
+}
+
+.muu-ec-contact-form-wrap .wpcf7-spinner {
+    position: absolute;
+    right: 0;
+    bottom: -2.25rem;
+    margin: 0;
+}
+
+.muu-ec-contact-form-wrap .wpcf7-not-valid-tip {
+    position: absolute;
+    margin-top: .25rem;
+    font-size: .6875rem;
+    letter-spacing: normal;
+}
+
+.muu-ec-contact-form-wrap .wpcf7-response-output {
+    margin: 1.5rem 0 0 !important;
+    padding: .75rem 1rem !important;
+    font-size: .875rem;
+}
+
+.muu-ec-contact-config-error {
+    padding: .75rem 1rem;
+    border-left: 3px solid #b42318;
+    color: #b42318;
+}
+
+.muu-ec-contact-notice {
+    margin: 0 0 1.5rem;
+    padding: .75rem 1rem;
+    border-left: 3px solid currentColor;
+    font-size: .875rem;
+}
+
+.muu-ec-contact-notice.is-success {
+    color: #237a3b;
+}
+
+.muu-ec-contact-notice.is-error {
+    color: #b42318;
+}
+
+.muu-ec-contact-trap {
+    position: absolute !important;
+    width: 1px !important;
+    height: 1px !important;
+    overflow: hidden !important;
+    clip: rect(0 0 0 0) !important;
+    white-space: nowrap !important;
+}
+
+@media (max-width: 767px) {
+    .muu-ec-contact-submit,
+    .muu-ec-contact-submit > p {
+        grid-template-columns: 1fr minmax(5.75rem, 30%);
+    }
+}

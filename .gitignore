@@ -1,24 +1,52 @@
-# Environment
+# Local environment and secrets
 .env
+.env.*
+!.env.example
+
+# Local design source storage
+figma/
 
 # OS / editor
 .DS_Store
 Thumbs.db
+Desktop.ini
 .vscode/
 .idea/
+*.swp
+*.swo
+*~
 
-# WordPress runtime / uploads
-wp-content/uploads/
+# WordPress runtime and generated content
+# Keep the assessment's Media Library assets so Elementor pages remain portable.
+wp-content/uploads/*
+!wp-content/uploads/2026/
+wp-content/uploads/2026/*
+!wp-content/uploads/2026/08/
+wp-content/uploads/2026/08/*-updraft-pre-smush-original.*
 wp-content/cache/
 wp-content/upgrade/
 wp-content/backup*/
+wp-content/backups/
+wp-content/ai1wm-backups/
+wp-content/updraft/
+wp-content/languages/
+wp-content/debug.log
 
-# Installed plugins are environment dependencies, not source
-wp-content/plugins/
+# Installed plugins are environment dependencies. MUU components live in the theme.
+wp-content/plugins/*
 
-# Logs
+# Logs and temporary files
 *.log
+*.tmp
+*.temp
 
 # Local exports / databases
 *.sql
 *.sql.gz
+!config/db/*.sql
+*.zip
+*.tar
+*.tar.gz
+
+# Local Docker overrides
+docker-compose.override.yml

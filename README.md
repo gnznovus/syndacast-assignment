@@ -24,7 +24,26 @@ cp .env.example .env
 docker compose up -d
 ```
 
-Open `http://localhost:8080` (or the port configured in `.env`) and complete the WordPress installer.
+On the first run, MySQL imports the sanitized finished-site snapshot and the setup container installs the required plugins. Allow a short time for setup to finish, then open `http://localhost:8080` (or the port configured in `.env`).
+
+Reviewer dashboard access:
+
+```text
+URL:      http://localhost:8080/wp-admin/
+Username: reviewer
+Password: muu-reviewer
+```
+
+These are intentionally public local-review credentials. Do not reuse them for a deployed website.
+
+The database snapshot includes the completed Elementor pages, WordPress attachment records, Contact Form 7 configuration, theme settings, and the reviewer administrator. Contact submissions, comments, revisions, analytics/security logs, plugin caches, and personal account data are excluded.
+
+If Docker volumes from an earlier installation already exist, reset them before testing the packaged snapshot:
+
+```bash
+docker compose down -v
+docker compose up -d
+```
 
 The custom theme is mounted from:
 
@@ -36,7 +55,7 @@ Activate **MUU Hotel Assessment** from WordPress Admin.
 
 ## Development Approach
 
-The project uses a lightweight custom WordPress theme for the global visual system, shared layout, responsive behavior, and WordPress integration. Elementor Free is used for editable main page content where appropriate, avoiding Elementor Pro-only functionality.
+The project uses a lightweight custom WordPress theme for the global visual system, shared layout, responsive behavior, and WordPress integration. Elementor Free is used for editable main page content, avoiding Elementor Pro-only functionality. Theme-owned MUU Controller shortcodes provide the custom navigation, expandable left tab, decorative shape, and Contact Form 7 presentation that Elementor Free does not include.
 
 This split keeps the implementation maintainable and design-focused while ensuring the assessment's main content can be managed through WordPress Admin.
 
@@ -60,10 +79,26 @@ Structured data will only be added where the required real business information 
 
 ## Plugins
 
-- Elementor (Free)
-- Contact form plugin: to be finalized during Contact Us implementation
+### Core plugins
 
-Plugins are kept intentionally minimal. SEO fundamentals are implemented at theme/content level so the site remains compatible with a dedicated SEO plugin if one is introduced later.
+Required for the implemented page-building and contact-form workflow:
+
+- Elementor (Free)
+- Contact Form 7
+- Flamingo
+
+Contact Form 7 handles validation and delivery; Flamingo stores contact submissions.
+
+### Nice-to-have plugins
+
+Currently used in the local WordPress installation but not required by the MUU theme:
+
+- All-In-One Security (AIOS)
+- Burst Statistics
+- UpdraftPlus
+- WP-Optimize
+
+The Docker setup service installs and activates the core plugins automatically. The optional plugins provide security hardening, privacy-friendly analytics, backups, and performance tooling and may be installed manually if desired. SEO fundamentals remain at theme/content level so the site stays compatible with a dedicated SEO plugin if one is introduced later.
 
 ## Design Reference
 
@@ -84,4 +119,4 @@ Typography follows the font assets supplied with the assessment where licensing 
 
 ## Status
 
-Foundation setup in progress.
+Home and Contact Us implementations are complete and ready for final browser QA.
