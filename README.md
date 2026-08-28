@@ -16,6 +16,7 @@ Two-page responsive hotel website built for the Syndacast WordPress Developer Sk
 ### Requirements
 
 - Docker Desktop / Docker Engine with Docker Compose
+- Internet access on first setup so the required WordPress plugins can be installed automatically
 
 ### Setup
 
@@ -42,6 +43,8 @@ Admin:    http://localhost:8080/wp-admin/
 ```
 
 If `WORDPRESS_PORT` is changed in `.env`, use that port instead of `8080`.
+
+The Docker web service is intentionally bound to `127.0.0.1` so the packaged reviewer account is not exposed beyond the local machine.
 
 The Contact Us page is available from the site's navigation after setup.
 
@@ -152,4 +155,4 @@ Typography follows the font assets supplied with the assessment where licensing 
 
 ## Status
 
-Home and Contact Us implementations are complete and ready for final browser QA.
+Home and Contact Us are complete and verified across desktop, tablet, and mobile. The repository is prepared for a fresh local Docker review using the packaged sanitized site snapshot.
