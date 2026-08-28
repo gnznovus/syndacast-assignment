@@ -221,53 +221,41 @@
 }
 
 @media (max-width: 1024px) {
+    .muu-footer__inner,
+    .muu-footer--tablet-1 .muu-footer__inner,
     .muu-footer--tablet-2 .muu-footer__inner {
-        grid-template-columns: .8fr 1.2fr;
+        grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+        min-height: 0;
+        align-items: start;
     }
 
+    .muu-footer__brand,
+    .muu-footer--tablet-1 .muu-footer__brand,
     .muu-footer--tablet-2 .muu-footer__brand {
-        grid-column: 1;
+        grid-column: 1 / -1;
         grid-row: 1;
-        border-top: 0;
+        justify-self: center;
+        width: 100%;
+        padding-bottom: 2rem;
     }
 
+    .muu-footer__nav,
+    .muu-footer--tablet-1 .muu-footer__nav,
     .muu-footer--tablet-2 .muu-footer__nav {
         grid-column: 1;
         grid-row: 2;
-        justify-self: start;
+        justify-self: center;
         margin-right: 0;
-        border-top: 1px solid rgba(255, 255, 255, .1);
     }
 
+    .muu-footer__contacts,
+    .muu-footer--tablet-1 .muu-footer__contacts,
     .muu-footer--tablet-2 .muu-footer__contacts {
         grid-column: 2;
-        grid-row: 1 / span 2;
+        grid-row: 2;
+        width: min(100%, 28rem);
+        justify-self: center;
         margin-left: 0;
-    }
-
-    .muu-footer--tablet-1 .muu-footer__inner {
-        display: flex;
-        min-height: 0;
-        flex-direction: column;
-    }
-
-    .muu-footer--tablet-1 .muu-footer__brand {
-        order: 1;
-    }
-
-    .muu-footer--tablet-1 .muu-footer__nav {
-        order: 2;
-        width: max-content;
-        max-width: 100%;
-        margin-right: 0;
-        border-top: 1px solid rgba(255, 255, 255, .1);
-    }
-
-    .muu-footer--tablet-1 .muu-footer__contacts {
-        order: 3;
-        width: auto;
-        margin-left: 0;
-        border-top: 1px solid rgba(255, 255, 255, .1);
     }
 
     .muu-footer__nav,
@@ -287,6 +275,7 @@
     }
 
     .muu-footer__inner,
+    .muu-footer--tablet-1 .muu-footer__inner,
     .muu-footer--tablet-2 .muu-footer__inner {
         display: flex;
         width: 100%;
@@ -295,26 +284,27 @@
     }
 
     .muu-footer__brand,
+    .muu-footer--tablet-1 .muu-footer__brand,
     .muu-footer--tablet-2 .muu-footer__brand {
         order: 1;
-        border-top: 0;
+        width: 100%;
     }
 
     .muu-footer__nav,
+    .muu-footer--tablet-1 .muu-footer__nav,
     .muu-footer--tablet-2 .muu-footer__nav {
         order: 2;
         width: max-content;
         max-width: calc(100% - 1.5rem);
         margin-right: 0;
-        border-top: 1px solid rgba(255, 255, 255, .1);
     }
 
     .muu-footer__contacts,
+    .muu-footer--tablet-1 .muu-footer__contacts,
     .muu-footer--tablet-2 .muu-footer__contacts {
         order: 3;
         width: auto;
         margin-left: 0;
-        border-top: 1px solid rgba(255, 255, 255, .1);
     }
 
     .muu-footer__nav,
