@@ -71,6 +71,20 @@ final class MUU_Footer_Controller {
         );
     }
 
+    private static function sanitize_link_value( $value ): string {
+        $value = trim( (string) $value );
+
+        if ( '' === $value || '#' === $value ) {
+            return $value;
+        }
+
+        if ( str_starts_with( $value, '#' ) || str_starts_with( $value, '/' ) ) {
+            return sanitize_text_field( $value );
+        }
+
+        return esc_url_raw( $value );
+    }
+
     public function sanitize_settings( $input ): array {
         $input    = is_array( $input ) ? $input : array();
         $defaults = self::defaults();
@@ -92,7 +106,7 @@ final class MUU_Footer_Controller {
             'logo_url', 'gallery_url', 'health_url', 'sustainability_url', 'privacy_url', 'contact_url',
             'youtube_url', 'tiktok_url', 'instagram_url'
         ) as $key ) {
-            $output[ $key ] = esc_url_raw( $input[ $key ] ?? $defaults[ $key ] );
+            $output[ $key ] = self::sanitize_link_value( $input[ $key ] ?? $defaults[ $key ] );
         }
 
         foreach ( array( 'reservations_email', 'inquiries_email' ) as $key ) {
@@ -182,14 +196,14 @@ JS
 
         $options = self::options();
         $fields = array(
-            'logo_text' => array( 'Logo text', 'text' ), 'logo_url' => array( 'Logo URL', 'url' ),
-            'gallery_label' => array( 'Gallery label', 'text' ), 'gallery_url' => array( 'Gallery URL', 'url' ),
-            'health_label' => array( 'Health & Safety label', 'text' ), 'health_url' => array( 'Health & Safety URL', 'url' ),
-            'sustainability_label' => array( 'Sustainability label', 'text' ), 'sustainability_url' => array( 'Sustainability URL', 'url' ),
-            'privacy_label' => array( 'Privacy Policy label', 'text' ), 'privacy_url' => array( 'Privacy Policy URL', 'url' ),
-            'contact_label' => array( 'Contact label', 'text' ), 'contact_url' => array( 'Contact URL', 'url' ),
+            'logo_text' => array( 'Logo text', 'text' ), 'logo_url' => array( 'Logo URL', 'link' ),
+            'gallery_label' => array( 'Gallery label', 'text' ), 'gallery_url' => array( 'Gallery URL', 'link' ),
+            'health_label' => array( 'Health & Safety label', 'text' ), 'health_url' => array( 'Health & Safety URL', 'link' ),
+            'sustainability_label' => array( 'Sustainability label', 'text' ), 'sustainability_url' => array( 'Sustainability URL', 'link' ),
+            'privacy_label' => array( 'Privacy Policy label', 'text' ), 'privacy_url' => array( 'Privacy Policy URL', 'link' ),
+            'contact_label' => array( 'Contact label', 'text' ), 'contact_url' => array( 'Contact URL', 'link' ),
             'follow_label' => array( 'Follow us label', 'text' ),
-            'youtube_url' => array( 'YouTube URL', 'url' ), 'tiktok_url' => array( 'TikTok URL', 'url' ), 'instagram_url' => array( 'Instagram URL', 'url' ),
+            'youtube_url' => array( 'YouTube URL', 'link' ), 'tiktok_url' => array( 'TikTok URL', 'link' ), 'instagram_url' => array( 'Instagram URL', 'link' ),
             'reservations_label' => array( 'Reservations heading', 'text' ), 'reservations_phone' => array( 'Reservations phone', 'text' ),
             'reservations_fax' => array( 'Reservations fax', 'text' ), 'reservations_email' => array( 'Reservations email', 'email' ),
             'inquiries_label' => array( 'Other inquiries heading', 'text' ), 'inquiries_phone' => array( 'Other inquiries phone', 'text' ),
@@ -201,15 +215,17 @@ JS
             <h1><?php esc_html_e( 'MUU Footer', 'muu-element-controller' ); ?></h1>
             <p><?php esc_html_e( 'Content rendered by [muu_footer]. Layout stays theme-owned while content and media remain editable here.', 'muu-element-controller' ); ?></p>
             <p><code>[muu_footer tablet_columns="2"]</code> &mdash; use <code>tablet_columns="1"</code> for a stacked tablet layout.</p>
+            <p class="description"><?php esc_html_e( 'Link fields accept #, anchors such as #offers, relative paths such as /contact/, or full URLs.', 'muu-element-controller' ); ?></p>
             <form action="options.php" method="post">
                 <?php settings_fields( 'muu_footer_settings_group' ); ?>
                 <table class="form-table" role="presentation"><tbody>
                     <?php self::media_field( 'background_image_id', 'Footer background image', absint( $options['background_image_id'] ) ); ?>
                     <?php self::media_field( 'slh_image_id', 'Small Luxury Hotels logo', absint( $options['slh_image_id'] ) ); ?>
                     <?php foreach ( $fields as $key => $field ) : ?>
+                        <?php $input_type = 'link' === $field[1] ? 'text' : $field[1]; ?>
                         <tr>
                             <th scope="row"><label for="muu-footer-<?php echo esc_attr( $key ); ?>"><?php echo esc_html( $field[0] ); ?></label></th>
-                            <td><input class="regular-text" id="muu-footer-<?php echo esc_attr( $key ); ?>" name="muu_footer_settings[<?php echo esc_attr( $key ); ?>]" type="<?php echo esc_attr( $field[1] ); ?>" value="<?php echo esc_attr( $options[ $key ] ); ?>"></td>
+                            <td><input class="regular-text" id="muu-footer-<?php echo esc_attr( $key ); ?>" name="muu_footer_settings[<?php echo esc_attr( $key ); ?>]" type="<?php echo esc_attr( $input_type ); ?>" value="<?php echo esc_attr( $options[ $key ] ); ?>"></td>
                         </tr>
                     <?php endforeach; ?>
                     <tr>
