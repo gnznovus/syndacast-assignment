@@ -299,7 +299,10 @@ final class MUU_Element_Controller {
                         <summary><code>[muu_nav_lefttab]</code><span><?php esc_html_e( 'Navigation + expandable left panel', 'muu-element-controller' ); ?></span></summary>
                         <div class="muu-shortcode-docs__body">
                             <p><strong><?php esc_html_e( 'Example', 'muu-element-controller' ); ?></strong></p>
-                            <code>[muu_nav_lefttab left-tab="false" logo-color="#000" nav-color="#000" mobile-logo-color="#fff" mobile-nav-color="#fff"]</code>
+                            <div class="muu-shortcode-example">
+                                <code>[muu_nav_lefttab left-tab="false" logo-color="#000" nav-color="#000" mobile-logo-color="#fff" mobile-nav-color="#fff"]</code>
+                                <button type="button" class="button" data-muu-copy-shortcode="[muu_nav_lefttab left-tab=&quot;false&quot; logo-color=&quot;#000&quot; nav-color=&quot;#000&quot; mobile-logo-color=&quot;#fff&quot; mobile-nav-color=&quot;#fff&quot;]"><?php esc_html_e( 'Copy', 'muu-element-controller' ); ?></button>
+                            </div>
                             <table class="widefat striped muu-shortcode-args"><tbody>
                                 <tr><td><code>class</code></td><td><?php esc_html_e( 'Extra CSS class on the component root.', 'muu-element-controller' ); ?></td></tr>
                                 <tr><td><code>target</code></td><td><?php esc_html_e( 'Override the configured Elementor host selector.', 'muu-element-controller' ); ?></td></tr>
@@ -319,7 +322,10 @@ final class MUU_Element_Controller {
                         <summary><code>[muu_orange_shape]</code><span><?php esc_html_e( 'Decorative orange hero artwork', 'muu-element-controller' ); ?></span></summary>
                         <div class="muu-shortcode-docs__body">
                             <p><strong><?php esc_html_e( 'Example', 'muu-element-controller' ); ?></strong></p>
-                            <code>[muu_orange_shape left="20%" top="12%" width="28%" rotate="0" color="#fe5000" opacity="0.85"]</code>
+                            <div class="muu-shortcode-example">
+                                <code>[muu_orange_shape left="20%" top="12%" width="28%" rotate="0" color="#fe5000" opacity="0.85"]</code>
+                                <button type="button" class="button" data-muu-copy-shortcode="[muu_orange_shape left=&quot;20%&quot; top=&quot;12%&quot; width=&quot;28%&quot; rotate=&quot;0&quot; color=&quot;#fe5000&quot; opacity=&quot;0.85&quot;]"><?php esc_html_e( 'Copy', 'muu-element-controller' ); ?></button>
+                            </div>
                             <table class="widefat striped muu-shortcode-args"><tbody>
                                 <tr><td><code>target</code></td><td><?php esc_html_e( 'Elementor host selector.', 'muu-element-controller' ); ?></td></tr>
                                 <tr><td><code>left</code></td><td><?php esc_html_e( 'Horizontal position. Default: 20%.', 'muu-element-controller' ); ?></td></tr>
@@ -340,7 +346,10 @@ final class MUU_Element_Controller {
                         <summary><code>[muu_contact_form]</code><span><?php esc_html_e( 'Styled Contact Form 7 wrapper', 'muu-element-controller' ); ?></span></summary>
                         <div class="muu-shortcode-docs__body">
                             <p><strong><?php esc_html_e( 'Example', 'muu-element-controller' ); ?></strong></p>
-                            <code>[muu_contact_form id="254"]</code>
+                            <div class="muu-shortcode-example">
+                                <code>[muu_contact_form id="254"]</code>
+                                <button type="button" class="button" data-muu-copy-shortcode="[muu_contact_form id=&quot;254&quot;]"><?php esc_html_e( 'Copy', 'muu-element-controller' ); ?></button>
+                            </div>
                             <table class="widefat striped muu-shortcode-args"><tbody>
                                 <tr><td><code>id</code></td><td><?php esc_html_e( 'Required Contact Form 7 form ID.', 'muu-element-controller' ); ?></td></tr>
                                 <tr><td><code>class</code></td><td><?php esc_html_e( 'Extra CSS class on the wrapper.', 'muu-element-controller' ); ?></td></tr>
@@ -352,7 +361,10 @@ final class MUU_Element_Controller {
                         <summary><code>[muu_footer]</code><span><?php esc_html_e( 'Theme-owned footer component', 'muu-element-controller' ); ?></span></summary>
                         <div class="muu-shortcode-docs__body">
                             <p><strong><?php esc_html_e( 'Example', 'muu-element-controller' ); ?></strong></p>
-                            <code>[muu_footer]</code>
+                            <div class="muu-shortcode-example">
+                                <code>[muu_footer]</code>
+                                <button type="button" class="button" data-muu-copy-shortcode="[muu_footer]"><?php esc_html_e( 'Copy', 'muu-element-controller' ); ?></button>
+                            </div>
                             <table class="widefat striped muu-shortcode-args"><tbody>
                                 <tr><td><code>class</code></td><td><?php esc_html_e( 'Optional extra CSS class on the footer root.', 'muu-element-controller' ); ?></td></tr>
                             </tbody></table>
