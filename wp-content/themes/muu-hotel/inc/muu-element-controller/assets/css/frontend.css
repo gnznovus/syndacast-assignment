@@ -481,16 +481,32 @@
         --muu-ec-bottom-control-line: clamp(1.5rem, 4cqh, 2.25rem);
     }
 
+    .muu-ec-panel-content {
+        min-width: 0;
+    }
+
+    .muu-ec-side-label {
+        font-size: clamp(.5625rem, 1.2cqw, .72rem);
+        letter-spacing: .8px;
+    }
+
+    .muu-ec-socials {
+        bottom: clamp(1.75rem, 5cqh, 2.5rem);
+        gap: clamp(.35rem, .8cqh, .55rem);
+    }
+
+    .muu-ec-socials a {
+        width: clamp(.75rem, 1.05cqw, 1rem);
+    }
+
     .muu-ec-nav-lefttab.is-menu-open .muu-ec-side-label {
         left: clamp(2.75rem, 5cqw, 4rem);
-        font-size: clamp(.625rem, 1.5cqw, .8rem);
-        letter-spacing: 1px;
     }
 
     .muu-ec-nav-lefttab.is-menu-open .muu-ec-socials {
         left: clamp(2.75rem, 5cqw, 4rem);
-        bottom: clamp(1.25rem, 4cqh, 2rem);
-        gap: clamp(.5rem, 1.2cqw, .75rem);
+        bottom: clamp(1.75rem, 5cqh, 2.5rem);
+        gap: clamp(.4rem, .9cqw, .6rem);
         transform: none;
     }
 
@@ -514,9 +530,9 @@
     }
 
     .muu-ec-panel-close {
-        right: clamp(.75rem, 2cqw, 1.25rem);
+        right: clamp(.5rem, 1.25cqw, .875rem);
         bottom: clamp(.75rem, 2cqh, 1.25rem);
-        width: clamp(4rem, 7cqw, 6rem);
+        width: clamp(3.75rem, 6.5cqw, 5.5rem);
         transform: none;
     }
 }
