@@ -1,49 +1,102 @@
 # MUU Theme Controller
 
-Theme-owned components supporting Elementor Free, Contact Form 7, and Flamingo.
+Theme-owned reusable components for the MUU Hotel Assessment theme.
 
-## Navbar + Left Tab
+The controller complements Elementor Free by keeping shared component behavior, settings, responsive presentation, and shortcode rendering inside the theme rather than duplicating them across Elementor pages.
 
-1. Activate the **MUU Hotel Assessment** theme.
-2. Configure components from **MUU Controller** in the WordPress dashboard sidebar.
-3. On the Elementor hero container, open **Advanced -> CSS Classes** and add `muu-hero-host`.
-4. Add Elementor's **Shortcode** widget anywhere on the page.
-5. Enter `[muu_nav_lefttab]`.
-
-The shortcode output is absolutely positioned and does not consume layout height. It finds `.muu-hero-host`, moves the rendered component into that container, and uses the target container's rendered image dimensions.
-
-Optional class and target selector:
+## Architecture
 
 ```text
-[muu_nav_lefttab class="my-extra-class" target=".another-hero-class"]
+muu-element-controller/
+├── assets/
+│   ├── css/
+│   ├── images/
+│   └── js/
+├── includes/
+│   ├── class-muu-admin-controller.php
+│   ├── class-muu-element-controller.php
+│   └── class-muu-footer-controller.php
+└── bootstrap.php
 ```
 
-Render only the navbar:
+Responsibilities are intentionally separated:
+
+- **MUU_Admin_Controller** — WordPress admin page, AJAX panels, shortcode documentation, settings forms, and Media Library integration.
+- **MUU_Element_Controller** — navigation/left-tab, orange-shape and contact-form shortcodes, frontend assets, fonts, and component settings.
+- **MUU_Footer_Controller** — footer settings and shortcode rendering.
+
+## WordPress Admin
+
+After activating **MUU Hotel Assessment**, open:
+
+**WordPress Admin → MUU Controller**
+
+The controller provides:
+
+- Overview
+- Shortcodes
+- Navigation settings
+- Footer settings
+- shortcode examples and supported arguments
+- copy controls for generated shortcode examples
+- Media Library integration for footer artwork
+
+The in-dashboard **Shortcodes** panel is the canonical reference for configurable shortcode arguments.
+
+## Shortcodes
+
+### Navigation + Left Tab
+
+```text
+[muu_nav_lefttab]
+```
+
+The navigation can render with or without the expandable left-tab content.
+
+Example without the left tab:
 
 ```text
 [muu_nav_lefttab left-tab="false"]
 ```
 
-Override navbar colors for a light background:
+Example with desktop/mobile color overrides:
 
 ```text
-[muu_nav_lefttab left-tab="false" logo-color="#000000" nav-color="#000000" divider-color="#d9d9d9"]
+[muu_nav_lefttab left-tab="false" logo-color="#000" nav-color="#000" mobile-logo-color="#fff" mobile-nav-color="#fff"]
 ```
 
-Underscore aliases are supported for `left_tab`, `logo_color`, `nav_color`, and `divider_color`.
+When used over an Elementor hero, add `muu-hero-host` to the target container's **Advanced → CSS Classes** field.
 
-## Orange Shape
+### Orange Shape
 
 ```text
-[muu_orange_shape target=".muu-hero-host" left="20%" top="12%" width="28%" rotate="0" flip_x="true" color="#ff6a00"]
+[muu_orange_shape]
 ```
 
-## Contact Form
+Renders the configurable decorative orange artwork. Position, size, rotation, flip, color, class, and target behavior can be configured through shortcode arguments.
 
-Render and style a Contact Form 7 form without a heading or social icons:
+### Contact Form
 
 ```text
 [muu_contact_form id="254"]
 ```
 
-Contact Form 7 handles validation and mail; Flamingo stores the submission.
+Renders the MUU-styled Contact Form 7 presentation. Contact Form 7 handles validation/submission processing and Flamingo stores submissions.
+
+Use the actual Contact Form 7 form ID for the target installation.
+
+### Footer
+
+```text
+[muu_footer]
+```
+
+Renders the reusable responsive footer using values configured in **MUU Controller → Shortcodes → Footer**.
+
+## Notes
+
+- Component settings are stored through the WordPress Settings API and sanitized before persistence.
+- Admin AJAX requests are protected by capability checks and a nonce.
+- Frontend output is escaped according to context.
+- Responsive component behavior is maintained in the controller's frontend styles rather than duplicated in Elementor page content.
+- Detailed argument descriptions and generated usage examples are maintained in the WordPress admin UI.
